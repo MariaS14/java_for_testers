@@ -1,0 +1,28 @@
+package sandbox.src.test.java.ru.stqa.geometry;
+
+import org.junit.Test;
+import sandbox.src.main.java.ru.stqa.geometry.figures.Square;
+import org.junit.jupiter.api.Assertions;
+
+public class SquareTests {
+
+    @Test
+    //void ничего не возвращает функции
+    //public функция глобальная
+
+    public void canCalculateArea(){
+        var s = new Square(5.0);//для переменной мы можем использовать ключевое слово var, тип этой переменной java определяет автоматически
+        double result = s. area();
+        Assertions.assertEquals(25.0, Square.area(5.0));
+    }
+    public static void printSquareArea(double side){
+        String text = String.format("Площадь квадртата со сторон");
+    }
+
+    @Test
+    public void canCalculatePerimeter(){
+        Assertions.assertEquals(20.0, new Square(5.0).perimeter());
+
+    }
+
+}
