@@ -1,9 +1,10 @@
 package sandbox.src.test.java.ru.stqa.geometry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import sandbox.src.main.java.ru.stqa.geometry.figures.Square;
 import org.junit.jupiter.api.Assertions;
 import sandbox.src.main.java.ru.stqa.geometry.figures.Triangle;
+
 
 public class SquareTests {
 
