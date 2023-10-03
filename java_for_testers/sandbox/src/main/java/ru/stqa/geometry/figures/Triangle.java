@@ -1,4 +1,5 @@
-package sandbox.src.main.java.ru.stqa.geometry.figures;
+package ru.stqa.geometry.figures;
+
 import java.lang.Math;
 
 public record Triangle(double a, double b, double c) {
@@ -10,6 +11,14 @@ public record Triangle(double a, double b, double c) {
     public static void printTrianglePerimeter(double a, double b, double c) {
         System.out.println("Периметр треугольника со сторонами " + a + " , " + b + "  " + c + " = " + (TrianglePerimeter(a, b, c)));
 
+    }
+    public Triangle {
+        if (a<0 || b<0 || c<0 || a*c<=a*b+b*c ){
+            throw new IllegalArgumentException("Triangle side should be non-negative");
+        }
+        if (a+b<=c || a+c<=b || c+b<=a  ){
+            throw new IllegalArgumentException("Triangle inequality violated");
+        }
     }
 
 

@@ -1,23 +1,23 @@
-package sandbox.src.main.java;
-
-import java.io.File;
 import java.sql.SQLOutput;
 
 public class Hello {
+
     public static void main(String[] args) {
 
         var x = 1;
         var y = 0;
-        var z = x/y;
+        if (y==0) {
+            System.out.println("Division by zero is not allowed");
+        } else {
+            var z = divide(x, y);
+            System.out.println(z);
+            System.out.println("Hello world");
+        }
+    }
 
-        System.out.println(z);
 
-        System.out.println("Hello world");
-
-
-        var configFile = new File("sandbox/build.gradle");
-        System.out.println(configFile.getAbsolutePath());
-        System.out.println(configFile.exists());
-
+    private static int divide(int x, int y) {
+        var z = x / y;
+        return z;
     }
 }

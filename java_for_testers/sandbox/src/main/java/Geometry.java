@@ -1,8 +1,6 @@
-package sandbox.src.main.java.ru.stqa.geometry;
-
-import sandbox.src.main.java.ru.stqa.geometry.figures.Rectangle;
+import ru.stqa.geometry.figures.Rectangle;
+import ru.stqa.geometry.figures.Triangle;
 import sandbox.src.main.java.ru.stqa.geometry.figures.Square;
-import sandbox.src.main.java.ru.stqa.geometry.figures.Triangle;
 
 public class Geometry {
   public static void main(String[] args) {

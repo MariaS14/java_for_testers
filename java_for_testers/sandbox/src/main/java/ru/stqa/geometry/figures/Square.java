@@ -3,6 +3,11 @@ package sandbox.src.main.java.ru.stqa.geometry.figures;
 import javax.swing.*;
 
 public record Square(double side) {
+    public Square{
+        if (side<0){
+            throw new IllegalArgumentException("Square side should be non-negative");
+        }
+    }
 
     //для ключевого свойства объекта мы можем использовать только тип, не можем использовать var
 
