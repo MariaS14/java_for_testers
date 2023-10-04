@@ -20,37 +20,65 @@ public class SquareTests {
             throw new AssertionError(String.format("Expected %f, actual %f", 25.0, result));
         }
     }
-        public static void printSquareArea(double side) {
-            String text = String.format("Площадь квадртата со сторон");
-        }
+
+    public static void printSquareArea(double side) {
+        String text = String.format("Площадь квадртата со сторон");
+    }
 
 
-        @Test
-        public void canCalculatePerimeter () {
-            Assertions.assertEquals(20.0, new Square(5.0).perimeter());
+    @Test
+    public void canCalculatePerimeter() {
+        Assertions.assertEquals(20.0, new Square(5.0).perimeter());
 
-        }
+    }
 
-        @Test
-        public void canCalculateTrianglePerimeter () {
-            double result = Triangle.TrianglePerimeter(13, 5, 12);
-            Assertions.assertEquals(15.0, result);
-        }
-        @Test
-        public void canCalculateTriangleArea () {
-            double result = Triangle.TriangleArea(13, 5, 12);
-            Assertions.assertEquals(30.0, result);
-        }
+    @Test
+    public void canCalculateTrianglePerimeter() {
+        double result = Triangle.TrianglePerimeter(13, 5, 12);
+        Assertions.assertEquals(15.0, result);
+    }
+
+    @Test
+    public void canCalculateTriangleArea() {
+        double result = Triangle.TriangleArea(13, 5, 12);
+        Assertions.assertEquals(30.0, result);
+    }
 
 
-        @Test
-        void cannotCreateSquareWithNegativeSide () {
+    @Test
+    void cannotCreateSquareWithNegativeSide() {
 
-            try {
-                new Square(-5.0);
-                Assertions.fail();
-            } catch (IllegalArgumentException exception) {
-                //ОК
-            }
+        try {
+            new Square(-5.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ОК
         }
     }
+
+    @Test
+    void testEquality() {
+        var s1 = new Square(5.0);
+        var s2 = new Square(5.0);
+        Assertions.assertEquals(s1, s2);
+    }
+
+    @Test
+    void testNonEquality() {
+        var s1 = new Square(5.0);
+        var s2 = new Square(4.0);
+        Assertions.assertNotEquals(s1, s2);
+    }
+
+    @Test
+    void testPass() {
+        var s1 = new Square(5.0);
+        var s2 = new Square(5.0);
+        Assertions.assertTrue(s1.equals(s2));
+    }
+}
+
+
+
+
+
