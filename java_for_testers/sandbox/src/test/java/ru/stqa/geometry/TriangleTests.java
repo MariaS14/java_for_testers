@@ -7,31 +7,30 @@ import ru.stqa.geometry.figures.Triangle;
 
 public class TriangleTests {
 
-        @Test
+    @Test
+    void cannotCreateTriangleWithNegativeSide() {
 
-        void cannotCreateTriangleWithNegativeSide () {
-
-            try {
-                new ru.stqa.geometry.figures.Triangle(-13.0, 5.0,12.0 );
-                Assertions.fail();
-            } catch (IllegalArgumentException exception) {
-                //ОК
-            }
-
+        try {
+            new ru.stqa.geometry.figures.Triangle(-13.0, 5.0, 12.0);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ОК
         }
-    @Test
+
+    }
+
+    @Test// проверяет равенство треугольников где стороны передаются в разном порядке
     void testEquality() {
-        var t1 = new Triangle(5.0, 4.0, 12.0);
-        var t2 = new Triangle(5.0, 4.0, 12.0);
-        Assertions.assertEquals(t1, t2);
+        var triangle1 = new Triangle(13.0, 5.0, 12.0);
+        var triangle2 = new Triangle(12.0, 13.0, 5.0);
+        Assertions.assertTrue(triangle1.equals(triangle2));
     }
 
-
-
-    @Test
-    void testEquality2() {
-        var t3 = new Triangle(5.0,4.0,12.0);
-        var t4 = new Triangle(4.0,5.0,12.0);
-        Assertions.assertEquals(t3, t4);
+    @Test //сравнивает два треугольника на равенство
+    void testPassEquality() {
+        var t4 = new Triangle(13.0, 5.0, 12.0);
+        var t5 = new Triangle(13.0, 5.0, 12.0);
+        Assertions.assertTrue(t4.equals(t5));
     }
-    }
+}
+
