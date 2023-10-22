@@ -1,0 +1,14 @@
+org.openqa.selenium.bidi.BiDiProvider
+org.openqa.selenium.chrome.AddHasCasting
+org.openqa.selenium.chrome.AddHasCdp
+org.openqa.selenium.chromium.AddHasLaunchApp
+org.openqa.selenium.chromium.AddHasNetworkConditions
+org.openqa.selenium.chromium.AddHasPermissions
+org.openqa.selenium.devtools.DevToolsProvider
+org.openqa.selenium.edge.AddHasCasting
+org.openqa.selenium.edge.AddHasCdp
+org.openqa.selenium.firefox.AddHasContext
+org.openqa.selenium.firefox.AddHasExtensions
+org.openqa.selenium.firefox.AddHasFullPageScreenshot
+org.openqa.selenium.safari.AddHasDebugger
+org.openqa.selenium.safari.AddHasPermissions
