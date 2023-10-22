@@ -28,9 +28,9 @@ public class TriangleTests {
 
     @Test //сравнивает два треугольника на равенство
     void testPassEquality() {
-        var t4 = new Triangle(13.0, 5.0, 12.0);
-        var t5 = new Triangle(13.0, 5.0, 12.0);
-        Assertions.assertTrue(t4.equals(t5));
+        var tr4 = new Triangle(13.0, 5.0, 12.0);
+        var tr5 = new Triangle(13.0, 5.0, 12.0);
+        Assertions.assertTrue(tr4.equals(tr5));
     }
 }
 
