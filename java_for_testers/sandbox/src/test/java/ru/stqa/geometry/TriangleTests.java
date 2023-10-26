@@ -23,9 +23,17 @@ public class TriangleTests {
     void testEquality() {
         var triangle1 = new Triangle(13.0, 5.0, 12.0);
         var triangle2 = new Triangle(12.0, 13.0, 5.0);
-        Assertions.assertTrue(triangle1.equals(triangle2));
+        Assertions.assertEquals(triangle1,triangle2);
     }
-
+    @Test
+    void testEquality1() {
+        var a = 2;
+        var b = 3;
+        var c = 4;
+        var triangle = new Triangle(a, b, c);
+        var triangle1 = new Triangle(a, c, b);
+        Assertions.assertEquals(triangle, triangle1);
+    }
     @Test //сравнивает два треугольника на равенство
     void testPassEquality() {
         var tr4 = new Triangle(13.0, 5.0, 12.0);
