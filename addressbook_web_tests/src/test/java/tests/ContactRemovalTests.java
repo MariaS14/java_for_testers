@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import tests.TestBase;
@@ -17,17 +18,18 @@ import java.io.File;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
 
 public class ContactRemovalTests extends TestBase {
   private static WebDriver driver;
 
   @BeforeEach
   public void setUp() {
+
     if (driver == null) {
-      var service = new GeckoDriverService.Builder();
-      service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
-      service.build();
-      driver = new FirefoxDriver(service.build());
+      var service = createDefaultService();
+      service.setExecutable("c:/windows/system32/chromedriver.exe");
+      driver = new ChromeDriver(service);
     }
     driver.get("http://localhost/addressbook/");
     driver.manage().window().setSize(new Dimension(1184, 784));

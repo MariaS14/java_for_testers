@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactRemovalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-30T22:39:42" hostname="DESKTOP-23VK9RO" time="4.131">
+<testsuite name="tests.ContactRemovalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-30T22:48:25" hostname="DESKTOP-23VK9RO" time="2.2">
   <properties/>
-  <testcase name="canRemoveContact()" classname="tests.ContactRemovalTests" time="4.131"/>
+  <testcase name="canRemoveContact()" classname="tests.ContactRemovalTests" time="2.2"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
