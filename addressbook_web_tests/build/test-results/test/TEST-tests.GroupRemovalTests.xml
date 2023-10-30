@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.GroupRemovalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-27T21:14:25" hostname="DESKTOP-23VK9RO" time="3.953">
-  <properties/>
-  <testcase name="canRemoveGroup()" classname="tests.GroupRemovalTests" time="3.953"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

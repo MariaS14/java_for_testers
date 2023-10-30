@@ -12,6 +12,8 @@ import org.openqa.selenium.firefox.GeckoDriverService;
 
 import java.io.File;
 
+import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
+
 
 public class ApplicationManager {
     protected WebDriver driver;
@@ -28,9 +30,9 @@ public class ApplicationManager {
                 driver = new FirefoxDriver(service.build());
 
             } else if ("chrome".equals(browser)) {
-                var service1 = ChromeDriverService.createDefaultService();
-                service1.setExecutable("c:/windows/system32/chromedriver.exe");
-                driver = new ChromeDriver();
+                var service = createDefaultService();
+                service.setExecutable("c:/windows/system32/chromedriver.exe");
+                driver = new ChromeDriver(service);
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
