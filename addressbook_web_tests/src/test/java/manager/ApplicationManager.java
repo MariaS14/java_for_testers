@@ -62,6 +62,7 @@ public class ApplicationManager {
 
     }
 
+
     public ContactHelper contacts() {
         if (contacts == null) {
             contacts = new ContactHelper(this);

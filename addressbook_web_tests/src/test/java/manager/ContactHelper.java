@@ -10,6 +10,6 @@ public class ContactHelper extends HelperBase {
                 super(manager);
         }
 
-        public void createContact(ContactData contact) {
+        public void createContact(ContactData contacts) {
         }
 }
