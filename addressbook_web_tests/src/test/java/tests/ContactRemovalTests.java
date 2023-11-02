@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -67,7 +68,7 @@ public class ContactRemovalTests extends TestBase {
 
 
 
-  private boolean isElementPresent(By id) {
+  /*private boolean isElementPresent(By id) {
 
 
   driver.findElement(By.id("1")).click();
@@ -76,8 +77,17 @@ public class ContactRemovalTests extends TestBase {
   driver.switchTo().alert().accept();
   return false;
    }
+  }*/
+
+
+  protected boolean isElementPresent(By locator) {
+
+    try {
+      driver.findElement(locator);
+      return true;
+    } catch (NoSuchElementException exception) {
+      return false;
+    }
   }
-
-
-
+}
 
