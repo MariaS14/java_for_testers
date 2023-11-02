@@ -8,10 +8,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.By;
 import java.io.File;
 
 public class ContactCreationTests extends TestBase {
+
+
 
     /*@BeforeEach
     public void setUp() {
@@ -26,21 +28,21 @@ public class ContactCreationTests extends TestBase {
         driver.findElement(By.name("user")).sendKeys("admin");
         driver.findElement(By.name("pass")).sendKeys("secret");
         driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
-    }*/
+    }
 
     @AfterEach
     public void tearDown() {
         driver.findElement(By.linkText("Logout")).click();
         driver.quit();
-    }
-
-    /*@Test
-    public void CanCreateContact() {
-    app.contacts().createContact(new ContactData("contact name", "contact name", "contact phone"));
     }*/
 
-
     @Test
+    public void CanCreateContact() {
+        app.contacts().canCreateContact(new ContactData("contact name", "contact name", "contact phone"));
+
+
+
+    /*@Test
 
     public void canCreateContact() {
 
@@ -63,22 +65,12 @@ public class ContactCreationTests extends TestBase {
         driver.findElement(By.name("lastname")).sendKeys("contact name");
         driver.findElement(By.name("middlename")).click();
         driver.findElement(By.name("middlename")).sendKeys("contact name");
-        driver.findElement(By.name("home")).sendKeys("contact phone");
+        driver.findElement(By.name("home")).sendKeys("contact phone");*/
 
 
-        driver.findElement(By.cssSelector("input:nth-child(87)")).click();
-        driver.findElement(By.linkText("home page")).click();
+        //app.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
+        app.driver.findElement(By.linkText("home")).click();
     }
-
-    /*protected boolean isElementPresent(By locator) {
-
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException exception) {
-            return false;
-        }
-    }*/
 }
 
 

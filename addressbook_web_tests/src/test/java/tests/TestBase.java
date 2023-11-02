@@ -18,21 +18,10 @@ public class TestBase {
 
     @BeforeEach
     public void setUp() {
+
         if (app == null) {
             app = new ApplicationManager();
-            app.init(System.getProperty("browser","chrome"));
+            app.init(System.getProperty("browser","firefox"));
         }
-    }
-
-
-
-    protected boolean isElementPresent(By locator) {
-
-      try {
-        driver.findElement(locator);
-        return true;
-      } catch (NoSuchElementException exception) {
-        return false;
-      }
     }
 }

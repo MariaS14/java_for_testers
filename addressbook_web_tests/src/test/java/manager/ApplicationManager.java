@@ -16,7 +16,7 @@ import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultServic
 
 
 public class ApplicationManager {
-    protected WebDriver driver;
+    public WebDriver driver;
     private LoginHelper session;
     private GroupHelper groups;
     private ContactHelper contacts;
@@ -70,6 +70,7 @@ public class ApplicationManager {
         return contacts;
 
     }
+
 
     public boolean isElementPresent(By locator) {
         try {
