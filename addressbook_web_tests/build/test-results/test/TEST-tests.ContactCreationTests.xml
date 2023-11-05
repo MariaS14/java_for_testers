@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.ContactCreationTests" tests="13" skipped="0" failures="0" errors="0" timestamp="2023-11-05T20:01:13" hostname="DESKTOP-23VK9RO" time="23.962">
+  <properties/>
+  <testcase name="[1] ContactData[name=, lastname=, phone=]" classname="tests.ContactCreationTests" time="5.472"/>
+  <testcase name="[2] ContactData[name=, lastname=, phone=contact phone]" classname="tests.ContactCreationTests" time="1.408"/>
+  <testcase name="[3] ContactData[name=, lastname=contact lastname, phone=]" classname="tests.ContactCreationTests" time="1.396"/>
+  <testcase name="[4] ContactData[name=, lastname=contact lastname, phone=contact phone]" classname="tests.ContactCreationTests" time="1.456"/>
+  <testcase name="[5] ContactData[name=contact name, lastname=, phone=]" classname="tests.ContactCreationTests" time="1.489"/>
+  <testcase name="[6] ContactData[name=contact name, lastname=, phone=contact phone]" classname="tests.ContactCreationTests" time="1.552"/>
+  <testcase name="[7] ContactData[name=contact name, lastname=contact lastname, phone=]" classname="tests.ContactCreationTests" time="1.548"/>
+  <testcase name="[8] ContactData[name=contact name, lastname=contact lastname, phone=contact phone]" classname="tests.ContactCreationTests" time="1.596"/>
+  <testcase name="[9] ContactData[name=, lastname=, phone=]" classname="tests.ContactCreationTests" time="1.563"/>
+  <testcase name="[10] ContactData[name=zgcrewdbnh, lastname=hwpdwmtsmw, phone=jspvxjrggc]" classname="tests.ContactCreationTests" time="1.571"/>
+  <testcase name="[11] ContactData[name=elfiboyjjgehveubovmx, lastname=utwqzynulcgauugdpawf, phone=kkavzhvcsoohslpfhjnr]" classname="tests.ContactCreationTests" time="1.658"/>
+  <testcase name="[12] ContactData[name=mtjtsqljlvrwdimxkcijtknfsruurh, lastname=evwglaakyronppvqwaeiyytfuvhija, phone=oxevvontdhqpskyvyjkjnykntgicrv]" classname="tests.ContactCreationTests" time="1.601"/>
+  <testcase name="[13] ContactData[name=lxcrtwadbwkgkkrxctdvchiwyauqulsxlqatjgov, lastname=knwngwckvkbezyzajkmbqlxedrtjruwaglekcrlz, phone=agrmifvyuyhytrmiueorjldwjfpdwzbenvirveem]" classname="tests.ContactCreationTests" time="1.634"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

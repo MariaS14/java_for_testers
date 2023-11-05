@@ -99,5 +99,6 @@ public class GroupHelper extends HelperBase {
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
+        removeSelectedGroups();
     }
 }

@@ -1,12 +1,11 @@
 package tests;
 
 import model.ContactData;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 public class ContactRemovalTests extends TestBase {
 
@@ -14,13 +13,27 @@ public class ContactRemovalTests extends TestBase {
 
     public void canRemoveContact() {
         app.contacts().openContactsPage(By.linkText("home"));
-        if (!app.contacts().isContactPresent()) {
+        if (app.contacts().getCountContact() == 0) {
             app.contacts().createContact(new ContactData("contact name", "contact lastname", "contact phone"));
         }
-        app.contacts().removeContact();
+        int contactCount = app.contacts().getCountContact();
+        app.contacts().removeContacts();
+        int newContactCount = app.contacts().getCountContact();
+        Assertions.assertEquals(contactCount - 1, newContactCount);
 
     }
 
+    @Test
+    void canRemoveAllContactsAtOnce() {
+        app.contacts().openContactsPage(By.linkText("home"));
+        if (app.contacts().getCountContact() == 0) {
+            app.contacts().createContact(new ContactData("contact name", "contact lastname", "contact phone"));
+        }
+        app.contacts().removeAllContacts();
+        Assertions.assertEquals(0, app.contacts().getCountContact());
+
+    }
+}
 
     //app.driver.findElement(By.linkText("home")).click();
 
@@ -55,5 +68,5 @@ public class ContactRemovalTests extends TestBase {
   }*/
 
 
-}
+
 

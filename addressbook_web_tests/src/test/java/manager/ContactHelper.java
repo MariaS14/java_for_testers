@@ -3,6 +3,9 @@ package manager;
 import model.ContactData;
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.awt.*;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -17,10 +20,6 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(home).click();
     }
 
-    public boolean isContactPresent() {
-        openContactsPage(By.linkText("home"));
-        return manager.isElementPresent(By.cssSelector("#maintable input[type='checkbox']:first-child"));
-    }
 
     public void createContact(ContactData contact) {
         openContactsPage(By.linkText("home"));
@@ -35,7 +34,8 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.linkText("home")).click();
     }
 
-    public void removeContact() {
+
+    public void removeContacts() {
         openContactsPage(By.linkText("home"));
         manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
         manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
@@ -43,7 +43,37 @@ public class ContactHelper extends HelperBase {
         manager.driver.switchTo().alert().accept();
     }
 
+    public int getCountContact() {
+        openContactsPage(By.linkText("home"));
+        return manager.driver.findElements(By.cssSelector("#maintable input[type='checkbox']:first-child")).size();
+    }
+    public void removeSelectedContacts() {
+        click(By.cssSelector("input[value='Delete']"));
+        manager.driver.switchTo().alert().accept();
+    }
+
+    public void removeAllContacts() {
+        openContactsPage(By.linkText("home"));
+        selectAllContacts();
+        removeSelectedContacts();
+    }
+
+    private void selectAllContacts() {
+        var checkboxes = manager.driver.findElements(By.cssSelector("#maintable input[type='checkbox']:first-child"));
+        for (var checkbox : checkboxes) {
+            checkbox.click();
+        }
+    }
+
+    /*public void modifyContact(ContactData modifiedContact) {
+        openContactsPage();
+        selectContact();
+        initContactModification();
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        returnToContactsPage();
+    }*/
+}
 
     //public void canCreateContact(ContactData contacts) {
-    //}
-}
+    //
