@@ -9,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.GeckoDriverService;
 
 import java.io.File;
+import java.time.Duration;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
@@ -33,6 +34,7 @@ public class ApplicationManager {
                 var service = createDefaultService();
                 service.setExecutable("c:/windows/system32/chromedriver.exe");
                 driver = new ChromeDriver(service);
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
@@ -43,6 +45,7 @@ public class ApplicationManager {
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(809, 1020));
             session().login("admin", "secret");
+
         }
     }
 

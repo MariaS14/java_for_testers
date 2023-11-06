@@ -24,6 +24,7 @@ public class GroupRemovalTests extends TestBase {
         expectedList.remove(index);
         //int newGroupCount = app. groups().getCount();
         Assertions.assertEquals(newGroups,expectedList);
+
     }
 
     @Test

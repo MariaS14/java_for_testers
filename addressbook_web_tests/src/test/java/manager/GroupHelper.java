@@ -3,6 +3,9 @@ package manager;
 import model.GroupData;
 import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class GroupHelper extends HelperBase {
         selectGroup(group);
         removeSelectedGroups();
         returnToGroupsPage();
+        manager.driver.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void modifyGroup(GroupData modifiedGroup) {
@@ -43,6 +47,7 @@ public class GroupHelper extends HelperBase {
         fillGroupForm(modifiedGroup);
         submitGroupModification();
         returnToGroupsPage();
+
     }
 
     private void submitGroupCreation() {
@@ -81,8 +86,11 @@ public class GroupHelper extends HelperBase {
 
     }
 
-    private void selectGroup(GroupData group) {
-        click(By.cssSelector(String.format("input[value='%s']", group.id())));
+    private void selectGroup( GroupData group) {
+        //click(By.cssSelector(String.format("input[value='%s']", group.id())));
+        click(By.cssSelector(String.format("input[name='selected[]'][value='%s']", group.id())));
+
+        //click(By.name("selected[]"));
 
 
     }
@@ -103,7 +111,7 @@ public class GroupHelper extends HelperBase {
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
-        removeSelectedGroups();
+        // removeSelectedGroups();
     }
 
     public List<GroupData> getList() {
