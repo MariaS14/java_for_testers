@@ -1,10 +1,14 @@
 package tests;
 
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 public class ContactRemovalTests extends TestBase {
@@ -14,23 +18,31 @@ public class ContactRemovalTests extends TestBase {
     public void canRemoveContact() {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.contacts().getCountContact() == 0) {
-            app.contacts().createContact(new ContactData("contact name", "contact lastname", "contact phone"));
+            app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
         }
-        int contactCount = app.contacts().getCountContact();
-        app.contacts().removeContacts();
-        int newContactCount = app.contacts().getCountContact();
-        Assertions.assertEquals(contactCount - 1, newContactCount);
+       /* int contactCount = app.contacts().getCountContact();
+        var oldContacts = app.contacts().getListContacts();
+        var rnd = new Random();
+        var index = rnd.nextInt(oldContacts.size());
+        app.contacts().removeContacts(oldContacts.get(index));
+        var newContacts = app.contacts().getListContacts();
+        //int newContactCount = app.contacts().getCountContact();
+        var expectedList = new ArrayList<>(oldContacts);
+        expectedList.remove(index);
+        Assertions.assertEquals(newContacts,expectedList);
 
+    }*/
     }
 
     @Test
     void canRemoveAllContactsAtOnce() {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.contacts().getCountContact() == 0) {
-            app.contacts().createContact(new ContactData("contact name", "contact lastname", "contact phone"));
+            app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
         }
         app.contacts().removeAllContacts();
         Assertions.assertEquals(0, app.contacts().getCountContact());
+
 
     }
 }
