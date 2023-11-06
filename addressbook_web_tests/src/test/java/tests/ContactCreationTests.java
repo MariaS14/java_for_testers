@@ -2,6 +2,7 @@ package tests;
 
 import model.ContactData;
 import model.GroupData;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,6 +62,21 @@ public class ContactCreationTests extends TestBase {
         app.contacts().createContact(contact);
         int newContactCount = app.contacts().getCountContact();
         Assertions.assertEquals(contactCount + 1, newContactCount);
+
+    }
+
+    public static @NotNull List<ContactData> negativeContactProvider() {
+        var result = new ArrayList<ContactData>(List.of(
+                new ContactData("", "contact name'", "", "")));
+        return result;
+    }
+    @ParameterizedTest
+    @MethodSource("negativeContactProvider")
+    public void canNotCreateMultipleContacts(ContactData contact) {
+        int contactCount = app.groups().getCount();
+        app.contacts().createContact(contact);
+        int newContactCount = app.groups().getCount();
+        Assertions.assertEquals(contactCount, newContactCount);
 
     }
 }

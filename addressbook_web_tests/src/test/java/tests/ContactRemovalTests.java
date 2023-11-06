@@ -1,14 +1,10 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 public class ContactRemovalTests extends TestBase {
@@ -47,7 +43,7 @@ public class ContactRemovalTests extends TestBase {
     }
 }
 
-    //app.driver.findElement(By.linkText("home")).click();
+//app.driver.findElement(By.linkText("home")).click();
 
             /*app. driver.findElement(By.linkText("add new")).click();
             {
@@ -64,11 +60,11 @@ public class ContactRemovalTests extends TestBase {
             app.driver.findElement(By.name("mobile")).sendKeys();
             app.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
             app.driver.findElement(By.linkText("home")).click();*/
-    //driver.findElement(By.id("1")).click();
-    //driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
-    //MatcherAssert.assertThat(driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
-    //driver.switchTo().alert().accept();
-    //}
+//driver.findElement(By.id("1")).click();
+//driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
+//MatcherAssert.assertThat(driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
+//driver.switchTo().alert().accept();
+//}
 
   /*private boolean isElementPresent(By id) {
   driver.findElement(By.id("1")).click();

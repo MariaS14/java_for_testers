@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class GroupRemovalTests extends TestBase {
@@ -22,7 +21,6 @@ public class GroupRemovalTests extends TestBase {
         var newGroups = app.groups().getList();
         var expectedList = new ArrayList<>(oldGroups);
         expectedList.remove(index);
-        //int newGroupCount = app. groups().getCount();
         Assertions.assertEquals(newGroups,expectedList);
 
     }

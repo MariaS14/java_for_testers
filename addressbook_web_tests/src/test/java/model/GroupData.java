@@ -7,8 +7,7 @@ public record GroupData(String id, String name, String header, String footer) {
         this("", "", "", "");
     }
 
-    public GroupData withId(String Id) {
-        return new GroupData(id, this.name, this.header, this.footer);
+    public GroupData withId(String id) { return new GroupData(id, this.name, this.header, this.footer);
     }
 
 

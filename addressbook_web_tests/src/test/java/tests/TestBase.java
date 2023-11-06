@@ -26,7 +26,6 @@ public class TestBase {
         for (int i = 0; i < n; i++) {
             result = result + (char) ('a' + rnd.nextInt(26));
         }
-
         return result;
     }
 }

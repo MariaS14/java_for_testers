@@ -37,7 +37,7 @@ public class GroupHelper extends HelperBase {
         selectGroup(group);
         removeSelectedGroups();
         returnToGroupsPage();
-        manager.driver.findElement(By.cssSelector("div.msgbox"));
+        //manager.driver.findElement(By.cssSelector("div.msgbox"));
     }
 
     public void modifyGroup(GroupData modifiedGroup) {
@@ -86,12 +86,8 @@ public class GroupHelper extends HelperBase {
 
     }
 
-    private void selectGroup( GroupData group) {
-        //click(By.cssSelector(String.format("input[value='%s']", group.id())));
-        click(By.cssSelector(String.format("input[name='selected[]'][value='%s']", group.id())));
-
-        //click(By.name("selected[]"));
-
+    private void selectGroup(GroupData group) {
+        click(By.cssSelector(String.format("input[value='%s']", group.id())));
 
     }
 
@@ -113,6 +109,7 @@ public class GroupHelper extends HelperBase {
         }
         // removeSelectedGroups();
     }
+
 
     public List<GroupData> getList() {
         var groups = new ArrayList<GroupData>();
