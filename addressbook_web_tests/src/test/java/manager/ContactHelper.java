@@ -48,7 +48,8 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
+        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
+        manager.driver.findElement(By.cssSelector(String.format("input[value='%s']",contact.id())));
     }
 
     public int getCountContact() {
@@ -74,6 +75,21 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+    public List<ContactData> getListContacts() {
+        var contacts = new ArrayList<ContactData>();
+        //var tds = manager.driver.findElements(By.cssSelector("td.center"));
+        var tds = manager.driver.findElements(By.cssSelector("td.odd"));
+        for (var td : tds) {
+            var name = td.getText();
+            var checkbox = td.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child"));
+            //var checkbox = td.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            contacts.add(new ContactData().withId(id).withName(name));
+            //contacts.add(new ContactData().withName(name));
+        }
+        return contacts;
+    }
+
     /*public List<ContactData> getListContacts() {
         var contacts = new ArrayList<ContactData>();
         var td = manager.driver.findElements(By.cssSelector("td.contact"));
@@ -89,7 +105,7 @@ public class ContactHelper extends HelperBase {
 
     /*public void modifyContact(ContactData modifiedContact) {
         openContactsPage();
-        selectContact();
+        selectContact(null);
         initContactModification();
         fillContactForm(modifiedContact);
         submitContactModification();
