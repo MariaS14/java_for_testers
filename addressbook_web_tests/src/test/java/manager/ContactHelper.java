@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.ContactData;
 
+import model.GroupData;
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.By;
 
@@ -20,6 +21,9 @@ public class ContactHelper extends HelperBase {
         super(manager);
     }
 
+    private void initContactCreation() {
+        manager.driver.findElement(By.linkText("add new")).click();
+    }
     public void openContactsPage(By home) {
         manager.driver.findElement(home).click();
     }
@@ -27,24 +31,37 @@ public class ContactHelper extends HelperBase {
 
     public void createContact(ContactData contact) {
         openContactsPage(By.linkText("home"));
-        manager.driver.findElement(By.linkText("add new")).click();
-        manager.driver.findElement(By.name("firstname")).click();
-        manager.driver.findElement(By.name("firstname")).sendKeys(contact.name());
-        manager.driver.findElement(By.name("lastname")).click();
-        manager.driver.findElement(By.name("lastname")).sendKeys(contact.lastname());
-        manager.driver.findElement(By.name("mobile")).click();
-        manager.driver.findElement(By.name("mobile")).sendKeys(contact.phone());
+        initContactCreation();
+        fillContactForm(contact);
+        submitContactCreation();
+        returnToContactsPage();    }
+
+    private void submitContactCreation() {
         manager.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
-        manager.driver.findElement(By.linkText("home")).click();
     }
+
+   
 
 
     public void removeContact(ContactData contacts) {
         openContactsPage(By.linkText("home"));
         selectContact(contacts);
-        manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
+        removeSelectedContact();
         MatcherAssert.assertThat(manager.driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
+    }
+
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        openContactsPage(By.linkText("home"));
+        selectContact(contact);
+        initContactModification();
+        fillContactForm(modifiedContact);
+        submitContactModification();
+        returnToContactsPage();
+    }
+
+    private void removeSelectedContact() {
+        manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
     }
 
     private void selectContact(ContactData contact) {
@@ -123,15 +140,42 @@ public class ContactHelper extends HelperBase {
 
 
 
-    /*public void modifyContact(ContactData modifiedContact) {
-        openContactsPage();
-        selectContact(null);
-        initContactModification();
-        fillContactForm(modifiedContact);
-        submitContactModification();
-        returnToContactsPage();
+
+
+    private void returnToContactsPage() {
+        manager.driver.findElement(By.linkText("home")).click();
+    }
+
+    private void submitContactModification() {
+        manager.driver.findElement(By.name("update")).click();
+
+    }
+
+    /*@Override
+    protected void click(By locator) {
+        super.click(locator);
     }*/
+    
+
+    private void fillContactForm(ContactData contact) {
+        type(By.name("firstname"), contact.name());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("mobile"), contact.phone());
+
+    }
+
+    public void type(By locator, String contact) {
+        click(locator);
+        manager.driver.findElement(locator).sendKeys(contact);
+    }
+
+    private void initContactModification() {
+        manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
+        
+    }
 }
+
+
 
     //public void canCreateContact(ContactData contacts) {
     //
