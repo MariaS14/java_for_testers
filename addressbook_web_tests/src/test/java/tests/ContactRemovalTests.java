@@ -1,6 +1,7 @@
 package tests;
 
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
@@ -22,13 +23,15 @@ public class ContactRemovalTests extends TestBase {
         var oldContacts = app.contacts().getListContacts();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        app.contacts().removeContacts(oldContacts.get(index));
+        app.contacts().removeContact(oldContacts.get(index));
         var newContacts = app.contacts().getListContacts();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
         Assertions.assertEquals(newContacts, expectedList);
 
     }
+
+
 
 
     @Test

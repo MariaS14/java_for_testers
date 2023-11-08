@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public void removeContacts(ContactData contacts) {
+    public void removeContact(ContactData contacts) {
         openContactsPage(By.linkText("home"));
         selectContact(contacts);
         manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
@@ -49,7 +49,11 @@ public class ContactHelper extends HelperBase {
 
     private void selectContact(ContactData contact) {
         //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
-        manager.driver.findElement(By.cssSelector(String.format("input[value='%s']",contact.id())));
+        //manager.driver.findElement(By.cssSelector(String.format("input[value='%s']",contact.id())));
+        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
+        manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id())));
+        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
+
     }
 
     public int getCountContact() {
