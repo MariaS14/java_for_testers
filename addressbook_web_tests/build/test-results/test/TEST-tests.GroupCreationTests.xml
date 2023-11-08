@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.GroupCreationTests" tests="13" skipped="0" failures="0" errors="0" timestamp="2023-11-08T18:45:46" hostname="DESKTOP-23VK9RO" time="22.419">
+  <properties/>
+  <testcase name="[1] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="6.005"/>
+  <testcase name="[2] GroupData[id=, name=, header=, footer=group footer]" classname="tests.GroupCreationTests" time="1.191"/>
+  <testcase name="[3] GroupData[id=, name=, header=group header, footer=]" classname="tests.GroupCreationTests" time="1.21"/>
+  <testcase name="[4] GroupData[id=, name=, header=group header, footer=group footer]" classname="tests.GroupCreationTests" time="1.257"/>
+  <testcase name="[5] GroupData[id=, name=group name, header=, footer=]" classname="tests.GroupCreationTests" time="1.255"/>
+  <testcase name="[6] GroupData[id=, name=group name, header=, footer=group footer]" classname="tests.GroupCreationTests" time="1.283"/>
+  <testcase name="[7] GroupData[id=, name=group name, header=group header, footer=]" classname="tests.GroupCreationTests" time="1.359"/>
+  <testcase name="[8] GroupData[id=, name=group name, header=group header, footer=group footer]" classname="tests.GroupCreationTests" time="1.455"/>
+  <testcase name="[9] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="1.379"/>
+  <testcase name="[10] GroupData[id=, name=sgyrvziexp, header=eiodnzhhrx, footer=idbufynqdf]" classname="tests.GroupCreationTests" time="1.446"/>
+  <testcase name="[11] GroupData[id=, name=gcfgvvhgzormbnhpbulm, header=pbaqclrrzlogcsupvudd, footer=swklysaskqlzsqgicbfl]" classname="tests.GroupCreationTests" time="1.485"/>
+  <testcase name="[12] GroupData[id=, name=bbxufcuiqvnlofofainoypdusirwwk, header=kqbnxsabjhugydisplomqeozsktcir, footer=wtrigryuxtampudhetujwfyeixnauc]" classname="tests.GroupCreationTests" time="1.53"/>
+  <testcase name="[13] GroupData[id=, name=kiwjyxnlyegdzqqldffnxvhuixilvqmmhdwzjpmn, header=dqqzgfdnkzimxunyaxbzkbaxphjhqtfzqplqlebv, footer=tusclqgbwfcjomivwzmxfjffpmgpteorhtxhkuew]" classname="tests.GroupCreationTests" time="1.554"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
