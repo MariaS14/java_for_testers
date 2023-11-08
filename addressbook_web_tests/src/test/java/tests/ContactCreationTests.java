@@ -72,7 +72,7 @@ public class ContactCreationTests extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withLastName("").withPhone(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withLastName("").withName("").withPhone(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts,expectedList);
 
@@ -87,10 +87,12 @@ public class ContactCreationTests extends TestBase {
     @ParameterizedTest
     @MethodSource("negativeContactProvider")
     public void canNotCreateMultipleContacts(ContactData contact) {
-        int contactCount = app.groups().getCount();
+        var oldContacts = app.contacts().getListContacts();
+
+        //int contactCount = app.groups().getCount();
         app.contacts().createContact(contact);
-        int newContactCount = app.groups().getCount();
-        Assertions.assertEquals(contactCount, newContactCount);
+        var newContacts = app.contacts().getListContacts();
+        Assertions.assertEquals(newContacts,oldContacts);
 
     }
 }

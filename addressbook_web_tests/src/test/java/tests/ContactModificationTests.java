@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase{
             app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
         }
         /*app.contacts().modifyContact(new ContactData().withName("modified name"));*/
-        /*var oldContacts = app.contacts().getListContacts();
+        var oldContacts = app.contacts().getListContacts();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
         var testData = new ContactData().withName("modified name");
@@ -31,6 +31,6 @@ public class ContactModificationTests extends TestBase{
         };
         newContacts.sort(compareById);
         expectedList.sort(compareById);
-        Assertions.assertEquals(newContacts,expectedList);*/
+        Assertions.assertEquals(newContacts,expectedList);
     }
 }

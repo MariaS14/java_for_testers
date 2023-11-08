@@ -113,6 +113,7 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }*/
     public List<ContactData> getListContacts() {
+        openContactsPage(By.linkText("home"));
         var contacts = new ArrayList<ContactData>();// пустой список для контактов
         var trs = manager.driver.findElements(By.name("entry"));
         for (var tr : trs) {
@@ -166,6 +167,7 @@ public class ContactHelper extends HelperBase {
 
     public void type(By locator, String contact) {
         click(locator);
+        manager.driver.findElement(locator).clear();
         manager.driver.findElement(locator).sendKeys(contact);
     }
 
