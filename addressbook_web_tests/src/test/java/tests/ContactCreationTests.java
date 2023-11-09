@@ -17,7 +17,7 @@ public class ContactCreationTests extends TestBase {
         var result = new ArrayList<ContactData>();
         for (var firstname : List.of("", "contact name")) {
             for (var lastname : List.of("", "contact lastname")) {
-                for (var phone : List.of("", "contact phone")) {
+                for (var phone : List.of("", "9273471")) {
                     result.add(new ContactData().withFirstName(firstname).withLastName(lastname).withPhone(phone));
                 }
             }
