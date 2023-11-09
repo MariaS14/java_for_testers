@@ -1,7 +1,6 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ public class ContactModificationTests extends TestBase{
         var oldContacts = app.contacts().getListContacts();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
-        var testData = new ContactData().withName("modified name");
+        var testData = new ContactData().withFirstName("modified name");
         app.contacts().modifyContact(oldContacts.get(index), testData);
         var newContacts = app.contacts().getListContacts();
         var expectedList = new ArrayList<>(oldContacts);

@@ -1,5 +1,6 @@
 package model;
 
+
 public record ContactData(String id, String name, String lastname, String phone) {
 
     public ContactData() {
@@ -9,7 +10,7 @@ public record ContactData(String id, String name, String lastname, String phone)
         return new ContactData(id, this.name, this.lastname, this.phone);
     }
 
-    public ContactData withName(String name) {
+    public ContactData withFirstName(String name) {
         return new ContactData(this.id, name, this.lastname, this.phone);
     }
 
@@ -17,7 +18,37 @@ public record ContactData(String id, String name, String lastname, String phone)
         return new ContactData(this.id, this.name, lastname, this.phone);
     }
 
+    /*public ContactData withPhoto(String photo) {
+        return new ContactData(this.id, this.name, this.lastname, this.phone);
+    }*/
+
     public ContactData withPhone(String phone) {
         return new ContactData(this.id, this.name, this.lastname, phone);
     }
 }
+
+
+/*public record ContactData(String id, String name, String lastname, String phone,String photo){
+public ContactData() {
+    this("", "", "", "","");
+}
+    public ContactData withId(String id) {
+        return new ContactData(id, this.name, this.lastname, this.phone,this.photo);
+    }
+
+    public ContactData withFirstName(String name) {
+        return new ContactData(this.id, name, this.lastname, this.phone, this.photo);
+    }
+
+    public ContactData withLastName(String lastname) {
+        return new ContactData(this.id, this.name, lastname, this.phone, this.photo);
+    }
+
+    public ContactData withPhoto(String photo) {
+        return new ContactData(this.id, this.name, this.lastname, this.phone, photo);
+    }
+
+    public ContactData withPhone(String phone) {
+        return new ContactData(this.id, this.name, this.lastname, phone,this.photo);
+    }
+}*/

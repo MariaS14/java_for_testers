@@ -4,12 +4,10 @@ import java.util.List;
 
 import model.ContactData;
 
-import model.GroupData;
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 import static org.hamcrest.CoreMatchers.is;
@@ -121,7 +119,7 @@ public class ContactHelper extends HelperBase {
             //var checkbox = tr.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child"));
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withName(name));
+            contacts.add(new ContactData().withId(id).withFirstName(name));
             //contacts.add(new ContactData().withName(name));
         }
         return contacts;

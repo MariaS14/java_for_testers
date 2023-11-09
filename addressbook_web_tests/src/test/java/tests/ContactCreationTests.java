@@ -1,7 +1,6 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,16 +18,19 @@ public class ContactCreationTests extends TestBase {
         for (var name : List.of("", "contact name")) {
             for (var lastname : List.of("", "contact lastname")) {
                 for (var phone : List.of("", "contact phone")) {
-                    result.add(new ContactData().withName(name).withLastName(lastname).withPhone(phone));
+                    result.add(new ContactData().withFirstName(name).withLastName(lastname).withPhone(phone));
                 }
             }
         }
         for (int i = 0; i < 5; i++) {
-            result.add(new ContactData().withName(randomString(i * 10))
+            result.add(new ContactData().withFirstName(randomString(i * 10))
                     .withLastName(randomString(i * 10))
                     .withPhone(randomString(i * 10)));
+                    //.withPhoto("src/test/resources/images/avatar.png"));
+
         }
         return result;
+
     }
 
 
@@ -38,6 +40,7 @@ public class ContactCreationTests extends TestBase {
     public void canCreateContact() {
         int contactCount = app.contacts().getCountContact();
         app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
+        //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
         int newContactCount = app.contacts().getCountContact();
         Assertions.assertEquals(contactCount+1,newContactCount);
     }
@@ -52,17 +55,13 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void canCreateContactWithNameOnly() {
-        app.contacts().createContact(new ContactData().withName("some name"));
+        app.contacts().createContact(new ContactData().withFirstName("some name"));
 
 
     }
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
-       /* int contactCount = app.contacts().getCountContact();
-        app.contacts().createContact(contact);
-        int newContactCount = app.contacts().getCountContact();
-        Assertions.assertEquals(contactCount + 1, newContactCount);*/
 
         var oldContacts = app.contacts().getListContacts();
         app.contacts().createContact(contact);
@@ -72,7 +71,7 @@ public class ContactCreationTests extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withLastName("").withName("").withPhone(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withFirstName("").withLastName("").withPhone(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts,expectedList);
 
@@ -113,6 +112,9 @@ public class ContactCreationTests extends TestBase {
             builder.doubleClick(element).perform();
         }*/
 
-
+/* int contactCount = app.contacts().getCountContact();
+        app.contacts().createContact(contact);
+        int newContactCount = app.contacts().getCountContact();
+        Assertions.assertEquals(contactCount + 1, newContactCount);*/
 
 
