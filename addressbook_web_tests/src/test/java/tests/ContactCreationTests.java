@@ -15,10 +15,10 @@ public class ContactCreationTests extends TestBase {
 
     public static List<ContactData> contactProvider() {
         var result = new ArrayList<ContactData>();
-        for (var name : List.of("", "contact name")) {
+        for (var firstname : List.of("", "contact name")) {
             for (var lastname : List.of("", "contact lastname")) {
                 for (var phone : List.of("", "contact phone")) {
-                    result.add(new ContactData().withFirstName(name).withLastName(lastname).withPhone(phone));
+                    result.add(new ContactData().withFirstName(firstname).withLastName(lastname).withPhone(phone));
                 }
             }
         }
@@ -71,7 +71,7 @@ public class ContactCreationTests extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withFirstName("").withLastName("").withPhone(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size()-1).id()).withFirstName(contact.firstname()).withLastName(contact.lastname()).withPhone(contact.phone()));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts,expectedList);
 

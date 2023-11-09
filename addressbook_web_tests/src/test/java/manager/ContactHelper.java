@@ -115,11 +115,16 @@ public class ContactHelper extends HelperBase {
         var contacts = new ArrayList<ContactData>();// пустой список для контактов
         var trs = manager.driver.findElements(By.name("entry"));
         for (var tr : trs) {
-            var name = tr.getText();
+            //var row = tr.getText();
+            var cells = tr.findElements(By.tagName("td"));
             //var checkbox = tr.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child"));
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withFirstName(name));
+            var lastName = cells.get(1).getText();
+            var firstName = cells.get(2).getText();
+            var phone = cells.get(5).getText();
+
+            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withPhone(phone));
             //contacts.add(new ContactData().withName(name));
         }
         return contacts;
@@ -157,7 +162,7 @@ public class ContactHelper extends HelperBase {
     
 
     private void fillContactForm(ContactData contact) {
-        type(By.name("firstname"), contact.name());
+        type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
 
