@@ -122,10 +122,10 @@ public class ContactHelper extends HelperBase {
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
             var lastName = cells.get(1).getText();
-            var firstName = cells.get(2).getText();
+            var firstname = cells.get(2).getText();
             var phone = cells.get(5).getText();
 
-            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withPhone(phone));
+            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastName).withPhone(phone));
             //contacts.add(new ContactData().withName(name));
         }
         return contacts;
@@ -180,11 +180,12 @@ public class ContactHelper extends HelperBase {
 
 
     private void initContactModification() {
-        //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
 
-        manager.driver.findElement(By.xpath("//a[@href='edit.php?id=583']")).click();
+        manager.driver.findElement(By.xpath(String.format("//a[@href='edit.php?id=587']"))).click();
+
         //manager.driver.findElement(By.cssSelector("//a[href=edit.php?id=%d")).click();
-
+        //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
+        //manager.driver.findElement(By.xpath("//a[@href='edit.php?id=583']")).click();
 
     }
 }

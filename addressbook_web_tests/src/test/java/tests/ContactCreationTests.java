@@ -39,17 +39,17 @@ public class ContactCreationTests extends TestBase {
                 .withPhone(randomString(10))
                 .withPhoto("src/test/resources/images/avatar.png");
 app.contacts().createContact(contact);
-    }
+    }*/
     @Test
 
     public void canCreateContact() {
         int contactCount = app.contacts().getCountContact();
-        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
         //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
         int newContactCount = app.contacts().getCountContact();
         Assertions.assertEquals(contactCount+1,newContactCount);
 
-    }*/
+    }
 
 
     @Test
