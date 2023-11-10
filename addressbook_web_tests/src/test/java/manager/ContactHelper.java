@@ -53,7 +53,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openContactsPage(By.linkText("home"));
         selectContact(contact);
-        initContactModification();
+        initContactModification(contact);
         fillContactForm(modifiedContact);
         submitContactModification();
         returnToContactsPage();
@@ -179,12 +179,12 @@ public class ContactHelper extends HelperBase {
 
 
 
-    private void initContactModification() {
+    private void initContactModification(ContactData contact) {
 
         //manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=%s\"]"))).click();
 //        manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=584\"]"))).click();
 //
-        manager.driver.findElement(By.cssSelector("a[href^='edit.php?id='] img")).click();
+        click(By.cssSelector(String.format("a[href^='edit.php?id=%s'] img", contact.id())));
 
         //manager.driver.findElement(By.cssSelector("//a[href=edit.php?id=%d")).click();
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();

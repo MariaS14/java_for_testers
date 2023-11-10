@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.ContactCreationTests" tests="16" skipped="0" failures="0" errors="0" timestamp="2023-11-10T12:24:10" hostname="DESKTOP-23VK9RO" time="74.202">
+  <properties/>
+  <testcase name="[1] ContactData[id=, firstname=, lastname=, phone=]" classname="tests.ContactCreationTests" time="9.098"/>
+  <testcase name="[2] ContactData[id=, firstname=, lastname=, phone=9273471]" classname="tests.ContactCreationTests" time="4.683"/>
+  <testcase name="[3] ContactData[id=, firstname=, lastname=contact lastname, phone=]" classname="tests.ContactCreationTests" time="4.501"/>
+  <testcase name="[4] ContactData[id=, firstname=, lastname=contact lastname, phone=9273471]" classname="tests.ContactCreationTests" time="4.456"/>
+  <testcase name="[5] ContactData[id=, firstname=contact name, lastname=, phone=]" classname="tests.ContactCreationTests" time="4.663"/>
+  <testcase name="[6] ContactData[id=, firstname=contact name, lastname=, phone=9273471]" classname="tests.ContactCreationTests" time="4.661"/>
+  <testcase name="[7] ContactData[id=, firstname=contact name, lastname=contact lastname, phone=]" classname="tests.ContactCreationTests" time="4.678"/>
+  <testcase name="[8] ContactData[id=, firstname=contact name, lastname=contact lastname, phone=9273471]" classname="tests.ContactCreationTests" time="4.715"/>
+  <testcase name="[9] ContactData[id=, firstname=, lastname=, phone=]" classname="tests.ContactCreationTests" time="4.697"/>
+  <testcase name="[10] ContactData[id=, firstname=segdkiagxh, lastname=omugewwrgd, phone=sdwopsqqua]" classname="tests.ContactCreationTests" time="4.873"/>
+  <testcase name="[11] ContactData[id=, firstname=ncrbmzqdxprcahrwlxxp, lastname=ikowdbvdihyrmoukrxtm, phone=ymayvrkevvxtsotxoexw]" classname="tests.ContactCreationTests" time="4.807"/>
+  <testcase name="[12] ContactData[id=, firstname=xibqoqbaixyvsobinpsdquhjrhmvwx, lastname=wfbqwydpqowojwxjkoagrwsnsmerpk, phone=gqjdspugzqhddnvzrcnbfksniaxnxu]" classname="tests.ContactCreationTests" time="4.859"/>
+  <testcase name="[13] ContactData[id=, firstname=eutkkxkkvrolirepzsbgkqvfzagslwxlhfhvbjmh, lastname=spfnmdruhufwzmgypyrxdgdhxlyihiggrktpuxmp, phone=vswizcpuseempsnuxiibcxgollggxzbaywwewqgn]" classname="tests.ContactCreationTests" time="4.85"/>
+  <testcase name="[1] ContactData[id=, firstname=contact name', lastname=, phone=]" classname="tests.ContactCreationTests" time="4.981"/>
+  <testcase name="canCreateContactWithEmptyName()" classname="tests.ContactCreationTests" time="1.874"/>
+  <testcase name="canCreateContactWithNameOnly()" classname="tests.ContactCreationTests" time="1.789"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
