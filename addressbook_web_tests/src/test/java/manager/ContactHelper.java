@@ -1,5 +1,6 @@
 package manager;
 
+import java.nio.file.Paths;
 import java.util.List;
 
 import model.ContactData;
@@ -165,6 +166,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
+       // attach(By.name("photo"),contact.photo());
 
     }
 
@@ -172,11 +174,18 @@ public class ContactHelper extends HelperBase {
         click(locator);
         manager.driver.findElement(locator).clear();
         manager.driver.findElement(locator).sendKeys(contact);
+
     }
 
+
+
     private void initContactModification() {
-        manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
-        
+        //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
+
+        manager.driver.findElement(By.xpath("//a[@href='edit.php?id=583']")).click();
+        //manager.driver.findElement(By.cssSelector("//a[href=edit.php?id=%d")).click();
+
+
     }
 }
 
