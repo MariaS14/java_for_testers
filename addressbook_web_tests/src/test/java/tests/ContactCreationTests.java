@@ -32,39 +32,6 @@ public class ContactCreationTests extends TestBase {
         return result;
 
     }
-    /*    @Test
-    public void CreateContact() {
-        var contact = new ContactData()
-                .withLastName(randomString(10))
-                .withPhone(randomString(10))
-                .withPhoto("src/test/resources/images/avatar.png");
-app.contacts().createContact(contact);
-    }*/
-    @Test
-
-    public void canCreateContact() {
-        int contactCount = app.contacts().getCountContact();
-        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
-        //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
-        int newContactCount = app.contacts().getCountContact();
-        Assertions.assertEquals(contactCount+1,newContactCount);
-
-    }
-
-
-    @Test
-    public void canCreateContactWithEmptyName() {
-        app.contacts().createContact(new ContactData());
-
-
-    }
-
-    @Test
-    public void canCreateContactWithNameOnly() {
-        app.contacts().createContact(new ContactData().withFirstName("some name"));
-
-
-    }
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
@@ -82,6 +49,40 @@ app.contacts().createContact(contact);
         Assertions.assertEquals(newContacts,expectedList);
 
     }
+    /*    @Test
+    public void CreateContact() {
+        var contact = new ContactData()
+                .withLastName(randomString(10))
+                .withPhone(randomString(10))
+                .withPhoto("src/test/resources/images/avatar.png");
+app.contacts().createContact(contact);
+    }
+    @Test
+
+    public void canCreateContact() {
+        int contactCount = app.contacts().getCountContact();
+        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone"));
+        //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+        int newContactCount = app.contacts().getCountContact();
+        Assertions.assertEquals(contactCount+1,newContactCount);
+
+    }*/
+
+
+    @Test
+    public void canCreateContactWithEmptyName() {
+        app.contacts().createContact(new ContactData());
+
+
+    }
+
+    @Test
+    public void canCreateContactWithNameOnly() {
+        app.contacts().createContact(new ContactData().withFirstName("some name"));
+
+
+    }
+
 
 
     public static @NotNull List<ContactData> negativeContactProvider() {

@@ -121,11 +121,11 @@ public class ContactHelper extends HelperBase {
             //var checkbox = tr.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child"));
             var checkbox = tr.findElement(By.name("selected[]"));
             var id = checkbox.getAttribute("value");
-            var lastName = cells.get(1).getText();
+            var lastname = cells.get(1).getText();
             var firstname = cells.get(2).getText();
             var phone = cells.get(5).getText();
 
-            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastName).withPhone(phone));
+            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withPhone(phone));
             //contacts.add(new ContactData().withName(name));
         }
         return contacts;
@@ -166,7 +166,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
-       // attach(By.name("photo"),contact.photo());
+       //attach(By.name("photo"),contact.photo());
 
     }
 
@@ -181,7 +181,10 @@ public class ContactHelper extends HelperBase {
 
     private void initContactModification() {
 
-        manager.driver.findElement(By.xpath(String.format("//a[@href='edit.php?id=587']"))).click();
+        //manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=%s\"]"))).click();
+//        manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=584\"]"))).click();
+//
+        manager.driver.findElement(By.cssSelector("a[href^='edit.php?id='] img")).click();
 
         //manager.driver.findElement(By.cssSelector("//a[href=edit.php?id=%d")).click();
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
