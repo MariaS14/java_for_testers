@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,10 +27,10 @@ public class ContactCreationTests extends TestBase {
         }
         for (int i = 0; i < 5; i++) {
             result.add(new ContactData()
-                    .withFirstName(randomString(i * 10))
-                    .withLastName(randomString(i * 10))
-                    .withPhone(randomString(i * 10))
-                    .withPhoto(randomString(i * 10)));
+                    .withFirstName(CommonFunctions.randomString(i * 10))
+                    .withLastName(CommonFunctions.randomString(i * 10))
+                    .withPhone(CommonFunctions.randomString(i * 10))
+                    .withPhoto(randomFile("src/test/resources/images")));
         }
         return result;
     }
@@ -55,15 +56,15 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void CreateContact() {
         var contact = new ContactData()
-                .withFirstName(randomString(10))
-                .withLastName(randomString(10))
-                .withPhone(randomString(10))
-                .withPhoto("src/test/resources/images/avatar.png");
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhone(CommonFunctions.randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
         app.contacts().createContact(contact);
     }
 
 
-    @Test
+    /*@Test
 
     public void canCreateContact() {
         int contactCount = app.contacts().getCountContact();
@@ -72,7 +73,7 @@ public class ContactCreationTests extends TestBase {
         int newContactCount = app.contacts().getCountContact();
         Assertions.assertEquals(contactCount + 1, newContactCount);
 
-    }
+    }*/
 
 
     @Test

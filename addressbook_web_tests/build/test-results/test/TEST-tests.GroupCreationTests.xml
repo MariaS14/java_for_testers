@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.GroupCreationTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-11-11T22:25:45" hostname="DESKTOP-23VK9RO" time="10.6">
+  <properties/>
+  <testcase name="[1] GroupData[id=, name=group name', header=, footer=]" classname="tests.GroupCreationTests" time="4.963"/>
+  <testcase name="[1] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="1.009"/>
+  <testcase name="[2] GroupData[id=, name=oiyvfouacy, header=ubamusetpk, footer=upqpksmxoq]" classname="tests.GroupCreationTests" time="1.061"/>
+  <testcase name="[3] GroupData[id=, name=uqefgwfbauojsmljmyju, header=yivdjdmvyeffdwnpflbd, footer=udyavhignjqzhcsazwiy]" classname="tests.GroupCreationTests" time="1.051"/>
+  <testcase name="[4] GroupData[id=, name=yhcdcwudhsunkyqryenhpoikfbrbwv, header=wlswwdltbpjcflqbsflxzbyklwvkos, footer=kizfambadhjranocoqqixgiscvzmow]" classname="tests.GroupCreationTests" time="1.14"/>
+  <testcase name="[5] GroupData[id=, name=mbcpcraxrqrmqctwlmkhfcvumyhygmbgqhydyrfi, header=ecnoihapyxdxbitdaoujkbozxjncavwkiwchjkwx, footer=mueqtqztnyyjnpuqgmhbongyfcwnsolochyvujop]" classname="tests.GroupCreationTests" time="1.156"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
