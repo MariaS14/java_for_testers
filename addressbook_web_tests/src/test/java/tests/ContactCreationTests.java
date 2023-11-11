@@ -1,6 +1,9 @@
 package tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import model.ContactData;
+import model.GroupData;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,15 +11,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.addressbook.common.CommonFunctions;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    public static List<ContactData> contactProvider() {
+    public static List<ContactData> contactProvider() throws IOException {
         var result = new ArrayList<ContactData>();
-        for (var firstname : List.of("", "contact name")) {
+        /*for (var firstname : List.of("", "contact name")) {
             for (var lastname : List.of("", "contact lastname")) {
                 for (var phone : List.of("", "9273471")) {
                     for (var photo : List.of("src/test/resources/images/avatar.png")) {
@@ -25,15 +32,32 @@ public class ContactCreationTests extends TestBase {
                 }
             }
         }
-        for (int i = 0; i < 5; i++) {
+        var json = "";
+        try(var reader = new FileReader("contacts.json");
+            var breader = new BufferedReader(reader)
+        ) {
+            var line = breader.readLine();
+            while (line != null) {
+                json =json + line;
+                line = breader.readLine();
+            }
+        }*/
+        var mapper = new XmlMapper();
+        var value = mapper.readValue(new File("contacts.xml"), new TypeReference<List<ContactData>>() {
+        });
+
+        result.addAll(value);//добавили в рамках этого исключение в метод throws IOException
+        return result;
+        /*for (int i = 0; i < 5; i++) {
             result.add(new ContactData()
                     .withFirstName(CommonFunctions.randomString(i * 10))
                     .withLastName(CommonFunctions.randomString(i * 10))
                     .withPhone(CommonFunctions.randomString(i * 10))
                     .withPhoto(randomFile("src/test/resources/images")));
-        }
-        return result;
+        }*/
+
     }
+
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
@@ -168,6 +192,26 @@ public class ContactCreationTests extends TestBase {
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts,expectedList);
 
+    }
+        public static List<ContactData> contactProvider() {
+        var result = new ArrayList<ContactData>();
+        for (var firstname : List.of("", "contact name")) {
+            for (var lastname : List.of("", "contact lastname")) {
+                for (var phone : List.of("", "9273471")) {
+                    for (var photo : List.of("src/test/resources/images/avatar.png")) {
+                        result.add(new ContactData().withFirstName(firstname).withLastName(lastname).withPhone(phone).withPhoto(photo));
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 5; i++) {
+            result.add(new ContactData()
+                    .withFirstName(CommonFunctions.randomString(i * 10))
+                    .withLastName(CommonFunctions.randomString(i * 10))
+                    .withPhone(CommonFunctions.randomString(i * 10))
+                    .withPhoto(randomFile("src/test/resources/images")));
+        }
+        return result;
     }
  */
 
