@@ -20,9 +20,9 @@ public class HelperBase {
         manager.driver.findElement(locator).clear();
         manager.driver.findElement(locator).sendKeys(text);
     }
-}
-    /*public void attach(By locator, String file) {
-        manager.driver.findElement(locator).sendKeys(Paths.get(file).toAbsolutePath().toString());//позволяет работать с путями, а не с файлами.Помогает преобразовывать пути
+
+    public void attach(By locator, String file) {
+        manager.driver.findElement(locator).sendKeys(Paths.get(file).toAbsolutePath().toString());
     }
-}*/
+}
 

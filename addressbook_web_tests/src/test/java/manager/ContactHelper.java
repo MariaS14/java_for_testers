@@ -166,7 +166,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
-       //attach(By.name("photo"),contact.photo());
+        attach(By.name("photo"),contact.photo());
 
     }
 
@@ -181,19 +181,11 @@ public class ContactHelper extends HelperBase {
 
     private void initContactModification(ContactData contact) {
 
-        //manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=%s\"]"))).click();
-//        manager.driver.findElement(By.cssSelector(String.format("a[href=\"edit.php?id=584\"]"))).click();
-//
         click(By.cssSelector(String.format("a[href^='edit.php?id=%s'] img", contact.id())));
-
-        //manager.driver.findElement(By.cssSelector("//a[href=edit.php?id=%d")).click();
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
-        //manager.driver.findElement(By.xpath("//a[@href='edit.php?id=583']")).click();
-
     }
 }
 
 
 
-    //public void canCreateContact(ContactData contacts) {
-    //
+
