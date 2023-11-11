@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.GeckoDriverService;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.Properties;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
@@ -21,7 +22,10 @@ public class ApplicationManager {
     private GroupHelper groups;
     private ContactHelper contacts;
 
-    public void init(String browser) {
+    private Properties properties;
+
+    public void init(String browser, Properties properties) {
+        this.properties = properties;
         if (driver == null) {
 
             if ("firefox".equals(browser)) {
@@ -42,9 +46,9 @@ public class ApplicationManager {
             //service.setExecutable("c:/windows/system32/chromedriver.exe");
             //driver = new ChromeDriver(service);
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-            driver.get("http://localhost/addressbook/");
+            driver.get(properties.getProperty("web.baseUrl"));
             driver.manage().window().setSize(new Dimension(809, 1020));
-            session().login("admin", "secret");
+            session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
 
         }
     }
