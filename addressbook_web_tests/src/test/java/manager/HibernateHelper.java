@@ -31,7 +31,7 @@ public class HibernateHelper extends HelperBase {
         for (var record : records) {
             result.add(convert(record));
         }
-        return result;
+        return result;//result
     }
 
 
