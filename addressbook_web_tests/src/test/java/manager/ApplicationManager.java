@@ -12,7 +12,6 @@ import java.io.File;
 import java.time.Duration;
 import java.util.Properties;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
 
 

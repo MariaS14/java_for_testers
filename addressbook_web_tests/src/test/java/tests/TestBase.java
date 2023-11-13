@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.Random;
 
-import static org.hamcrest.CoreMatchers.is;
 
 public class TestBase {
 

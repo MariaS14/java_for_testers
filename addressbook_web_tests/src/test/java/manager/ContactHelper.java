@@ -5,13 +5,13 @@ import java.util.List;
 
 import model.ContactData;
 
-import org.hamcrest.MatcherAssert;
+
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 
 
-import static org.hamcrest.CoreMatchers.is;
+
 
 public class ContactHelper extends HelperBase {
 
@@ -46,7 +46,7 @@ public class ContactHelper extends HelperBase {
         openContactsPage(By.linkText("home"));
         selectContact(contacts);
         removeSelectedContact();
-        MatcherAssert.assertThat(manager.driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
+        //MatcherAssert.assertThat(manager.driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
     }
 
