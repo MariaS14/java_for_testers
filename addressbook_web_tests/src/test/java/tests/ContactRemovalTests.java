@@ -78,7 +78,3 @@ public class ContactRemovalTests extends TestBase {
   return false;
    }
   }*/
-
-
-
-

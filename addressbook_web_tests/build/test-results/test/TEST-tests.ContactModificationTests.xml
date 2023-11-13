@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-13T14:20:57" hostname="DESKTOP-23VK9RO" time="2.268">
-  <properties/>
-  <testcase name="canModifyContact()" classname="tests.ContactModificationTests" time="2.268"/>
-  <system-out><![CDATA[empty
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

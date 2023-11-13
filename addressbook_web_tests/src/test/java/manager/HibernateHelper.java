@@ -2,6 +2,7 @@ package manager;
 
 import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
+import model.ContactData;
 import model.GroupData;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
@@ -21,7 +22,7 @@ public class HibernateHelper extends HelperBase {
                 //.addAnnotatedClass(Book.class)
                 .addAnnotatedClass(ContactRecord.class)
                 .addAnnotatedClass(GroupRecord.class)
-                .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook")
+                .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull")
                 .setProperty(AvailableSettings.USER, "root")
                 .setProperty(AvailableSettings.PASS, "")
                 .buildSessionFactory();
@@ -36,15 +37,14 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
     private static GroupData convert(GroupRecord record) {
-        return new GroupData(""+ record.id, record.name, record.header, record.footer);
+        return new GroupData("" + record.id, record.name, record.header, record.footer);
     }
 
 
     private static GroupRecord convert(GroupData data) {
         var id = data.id();
-        if("".equals(id)){
+        if ("".equals(id)) {
             id = "0";
         }
         return new GroupRecord(Integer.parseInt(id), data.name(), data.header(), data.footer());
@@ -55,6 +55,7 @@ public class HibernateHelper extends HelperBase {
             return session.createQuery("from GroupRecord", GroupRecord.class).list();
         }));
     }
+
     public void createGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -64,15 +65,13 @@ public class HibernateHelper extends HelperBase {
     }
 
 
-
-
     public long getGroupCount() {
         return sessionFactory.fromSession(session -> {
             return session.createQuery("select count (*) from GroupRecord", Long.class).getSingleResult();
         });
     }
 
-    /*static List<ContactData> convertListContact(List<ContactRecord> records) {
+    static List<ContactData> convertContactList(List<ContactRecord> records) {
         List<ContactData> result = new ArrayList<>();
         for (var record : records) {
             result.add(convertContact(record));
@@ -87,34 +86,45 @@ public class HibernateHelper extends HelperBase {
                 .withLastName(record.lastname)
                 .withPhone(record.phone);
     }
+
     private static ContactRecord convertContact(ContactData data) {
         var id = data.id();
-        if("".equals(id)){
+        if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(),data.phone());
+        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.lastname(), data.phone());
     }
 
 
-
-    /*public long getContactCount() {
+    public long getContactCount() {
         return sessionFactory.fromSession(session -> {
             return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
         });
     }
 
     public List<ContactData> getContactList() {
-        return convertListContact(sessionFactory.fromSession(session -> {
+        return convertContactList(sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
         }));
-    }*/
+    }
+
+    public void createContact(ContactData contactData) {
+        sessionFactory.inSession(session -> {
+            session.getTransaction().begin();
+            session.persist(convertContact(contactData));
+            session.getTransaction().commit();
+        });
+    }
 
 
-
-
-
-
+    public List<ContactData> getContactsInGroup(GroupData group) {
+        return sessionFactory.fromSession(session -> {
+            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
+        });
+    }
 }
+
+
 
 
 

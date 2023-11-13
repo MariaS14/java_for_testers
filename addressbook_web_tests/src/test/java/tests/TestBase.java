@@ -1,7 +1,6 @@
 package tests;
 
 import manager.ApplicationManager;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
@@ -28,7 +27,7 @@ public class TestBase {
         }
     }
 
-    public static @NotNull String randomFile(String dir){
+    public static String randomFile(String dir){
         var fileNames = new File(dir).list();
         var rnd = new Random();
         var index = rnd.nextInt(fileNames.length);
@@ -36,6 +35,3 @@ public class TestBase {
 
     }
 }
-
-
-

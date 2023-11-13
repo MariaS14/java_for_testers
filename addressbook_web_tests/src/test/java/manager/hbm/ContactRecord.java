@@ -22,7 +22,7 @@ public class ContactRecord {
     @Column(name = "lastname")
     public String lastname;
 
-    @Column(name = "phone")
+    @Column(name = "mobile")
     public String phone;
 
     @Column(name = "deprecated")

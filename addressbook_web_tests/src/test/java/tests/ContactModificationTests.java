@@ -79,4 +79,6 @@ public class ContactModificationTests extends TestBase{
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts,expectedList);
     }
+
+
 }*/

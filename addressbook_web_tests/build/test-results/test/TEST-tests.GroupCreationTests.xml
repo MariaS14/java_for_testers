@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.GroupCreationTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-11-13T14:21:03" hostname="DESKTOP-23VK9RO" time="6.136">
+<testsuite name="tests.GroupCreationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-13T20:45:32" hostname="DESKTOP-23VK9RO" time="6.816">
   <properties/>
-  <testcase name="[1] GroupData[id=, name=group name', header=, footer=]" classname="tests.GroupCreationTests" time="1.02"/>
-  <testcase name="[1] GroupData[id=, name=, header=, footer=]" classname="tests.GroupCreationTests" time="0.979"/>
-  <testcase name="[2] GroupData[id=, name=vperrmhwml, header=qpyyiqzxfz, footer=kzdziczvdc]" classname="tests.GroupCreationTests" time="0.974"/>
-  <testcase name="[3] GroupData[id=, name=mrcpwgfqmkyzobfhmovv, header=gbxizbeaxnsxutoipxrv, footer=cirqcdogoygzuwcpikph]" classname="tests.GroupCreationTests" time="0.998"/>
-  <testcase name="[4] GroupData[id=, name=liphdzxlexgoeccbbmkeuuwhzxmplr, header=zpvyshxsxkantnoiplfgarwvouiwrb, footer=mgzpxhuiffszjiwsxdtopcnwbodtdj]" classname="tests.GroupCreationTests" time="1.035"/>
-  <testcase name="[5] GroupData[id=, name=wvwilehnfjbondwkyxjioxscobdgjiotamnkasyf, header=ltakqirrjmjfftivfvzfyyscrpxnodmsgynerghq, footer=fjmkcqbloareilquoawreunokhzpgfcdsfiszead]" classname="tests.GroupCreationTests" time="1.114"/>
+  <testcase name="[1] GroupData[id=, name=tqalpgfrup, header=qdzwpkwldxlufkngqcfg, footer=hjiwpastrouqguprhzsrimfwtssmyy]" classname="tests.GroupCreationTests" time="6.816"/>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[нояб. 13, 2023 11:45:35 PM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 6.3.0.CR1
+нояб. 13, 2023 11:45:35 PM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000406: Using bytecode reflection optimizer
+нояб. 13, 2023 11:45:35 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+INFO: HHH000026: Second-level cache disabled
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull]
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=root}
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+нояб. 13, 2023 11:45:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH10001115: Connection pool size: 20 (min=1)
+нояб. 13, 2023 11:45:36 PM org.hibernate.dialect.Dialect checkVersion
+WARN: HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+нояб. 13, 2023 11:45:37 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+]]></system-err>
 </testsuite>
