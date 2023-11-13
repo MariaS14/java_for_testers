@@ -1,14 +1,11 @@
 package manager;
 
-import jakarta.persistence.Id;
-import manager.hbm.GroupRecord;
 import manager.hbm.ContactRecord;
-import model.ContactData;
+import manager.hbm.GroupRecord;
 import model.GroupData;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +72,7 @@ public class HibernateHelper extends HelperBase {
         });
     }
 
-    static List<ContactData> convertListContact(List<ContactRecord> records) {
+    /*static List<ContactData> convertListContact(List<ContactRecord> records) {
         List<ContactData> result = new ArrayList<>();
         for (var record : records) {
             result.add(convertContact(record));
@@ -100,7 +97,7 @@ public class HibernateHelper extends HelperBase {
 
 
 
-    public long getContactCount() {
+    /*public long getContactCount() {
         return sessionFactory.fromSession(session -> {
             return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
         });
@@ -110,7 +107,7 @@ public class HibernateHelper extends HelperBase {
         return convertListContact(sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
         }));
-    }
+    }*/
 
 
 
