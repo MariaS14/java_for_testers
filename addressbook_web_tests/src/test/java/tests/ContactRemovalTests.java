@@ -17,14 +17,14 @@ public class ContactRemovalTests extends TestBase {
 
     public void canRemoveContact() {
         app.contacts().openContactsPage(By.linkText("home"));
-        if (app.contacts().getCountContact() == 0) {
-            app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+        if (app.hbm().getContactCount()==0){
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
         }
-        var oldContacts = app.contacts().getListContacts();
+        var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
         app.contacts().removeContact(oldContacts.get(index));
-        var newContacts = app.contacts().getListContacts();
+        var newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
         Assertions.assertEquals(newContacts, expectedList);
@@ -37,11 +37,11 @@ public class ContactRemovalTests extends TestBase {
     @Test
     void canRemoveAllContactsAtOnce() {
         app.contacts().openContactsPage(By.linkText("home"));
-        if (app.contacts().getCountContact() == 0) {
-            app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+        if (app.hbm().getContactCount()==0){
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
         }
         app.contacts().removeAllContacts();
-        Assertions.assertEquals(0, app.contacts().getCountContact());
+        Assertions.assertEquals(0, app.hbm().getContactCount());
 
 
     }

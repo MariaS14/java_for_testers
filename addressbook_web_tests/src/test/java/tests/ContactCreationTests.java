@@ -60,9 +60,9 @@ public class ContactCreationTests extends TestBase {
     @MethodSource("contactProvider")
     public void canCreateMultipleContacts(ContactData contact) {
 
-        var oldContacts = app.contacts().getListContacts();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContact(contact);
-        var newContacts = app.contacts().getListContacts();
+        var newContacts = app.hbm().getContactList();
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
@@ -104,16 +104,7 @@ public class ContactCreationTests extends TestBase {
     }
 
 
-    /*@Test
 
-    public void canCreateContact() {
-        int contactCount = app.contacts().getCountContact();
-        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "src/test/resources/images/avatar.png"));
-        //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
-        int newContactCount = app.contacts().getCountContact();
-        Assertions.assertEquals(contactCount + 1, newContactCount);
-
-    }*/
 
 
     @Test
@@ -230,3 +221,14 @@ public class ContactCreationTests extends TestBase {
         return result;
     }
  */
+
+   /*@Test
+
+    public void canCreateContact() {
+        int contactCount = app.contacts().getCountContact();
+        app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "src/test/resources/images/avatar.png"));
+        //app.contacts().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+        int newContactCount = app.contacts().getCountContact();
+        Assertions.assertEquals(contactCount + 1, newContactCount);
+
+    }*/
