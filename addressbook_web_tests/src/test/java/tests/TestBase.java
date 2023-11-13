@@ -1,10 +1,10 @@
 package tests;
 
 import manager.ApplicationManager;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -28,7 +28,7 @@ public class TestBase {
         }
     }
 
-    public static String randomFile(String dir){
+    public static @NotNull String randomFile(String dir){
         var fileNames = new File(dir).list();
         var rnd = new Random();
         var index = rnd.nextInt(fileNames.length);
