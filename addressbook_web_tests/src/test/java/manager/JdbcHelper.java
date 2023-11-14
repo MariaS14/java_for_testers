@@ -1,5 +1,6 @@
 package manager;
 
+import model.ContactData;
 import model.GroupData;
 
 import java.sql.DriverManager;
@@ -37,12 +38,35 @@ public class JdbcHelper extends HelperBase {
         try (var conn = DriverManager.getConnection("jdbc:mysql://localhost/addressbook", "root", "");
              var statement = conn.createStatement();
              var result = statement.executeQuery("SELECT * FROM address_in_groups ag LEFT JOIN addressbook ab ON ab.id = ag.id WHERE ab.id IS NULL")) {
-           if (result.next()) {
+            if (result.next()) {
                 throw new IllegalArgumentException("DB is corrupted");
 
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<ContactData> getContactList() {
+        var contacts = new ArrayList<ContactData>();
+        try (var conn = DriverManager.getConnection("jdbc:mysql://localhost/addressbook", "root", "");
+             var statement = conn.createStatement();
+             var result = statement.executeQuery("SELECT id, firstname, lastname, mobile, middlename, address,nickname, company,title FROM addressbook")) {
+            while (result.next()) {
+                contacts.add(new ContactData()
+                        .withId(result.getString("id"))
+                        .withFirstName(result.getString("firstname"))
+                        .withLastName(result.getString("lastname"))
+                        .withPhone(result.getString("mobile"))
+                        .withMiddlename(result.getString("middlename"))
+                        .withAddress(result.getString("address"))
+                        .withNickname(result.getString("nickname"))
+                        .withCompany(result.getString("company"))
+                        .withTitle(result.getString("title")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return contacts;
     }
 }

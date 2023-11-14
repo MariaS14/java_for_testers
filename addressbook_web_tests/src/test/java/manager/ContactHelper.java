@@ -54,7 +54,7 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
     }
 
-   
+
 
 
     public void removeContact(ContactData contacts) {
@@ -79,11 +79,8 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContact(ContactData contact) {
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
         click (By.cssSelector(String.format("input[value='%s']",contact.id())));
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
-        //manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id()))).click();
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
+
 
     }
 
@@ -139,8 +136,13 @@ public class ContactHelper extends HelperBase {
             var lastname = cells.get(1).getText();
             var firstname = cells.get(2).getText();
             var phone = cells.get(5).getText();
+            var middlename = cells.get(5).getText();
+            var address = cells.get(3).getText();
+            var title = cells.get(6).getText();
+            var nickname = cells.get(7).getText();
+            var company = cells.get(8).getText();
 
-            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withPhone(phone));
+            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withPhone(phone).withMiddlename(middlename).withAddress(address).withTitle(title).withNickname(nickname).withCompany(company));
             //contacts.add(new ContactData().withName(name));
         }
         return contacts;
@@ -175,13 +177,21 @@ public class ContactHelper extends HelperBase {
     protected void click(By locator) {
         super.click(locator);
     }*/
-    
+
 
     private void fillContactForm(ContactData contact) {
         type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
         attach(By.name("photo"),contact.photo());
+        type(By.name("middlename"), contact.middlename());
+        type(By.name("address"), contact.address());
+        type(By.name("title"), contact.title());
+        type(By.name("nickname"), contact.nickname());
+        type(By.name("company"), contact.company());
+
+
+
 
     }
 
@@ -200,7 +210,3 @@ public class ContactHelper extends HelperBase {
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
     }
 }
-
-
-
-
