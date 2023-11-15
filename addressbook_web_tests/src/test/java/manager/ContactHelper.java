@@ -62,7 +62,7 @@ public class ContactHelper extends HelperBase {
         selectContact(contacts);
         removeSelectedContact();
         //MatcherAssert.assertThat(manager.driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
-        manager.driver.switchTo().alert().accept(); manager.driver.switchTo().alert().accept();
+        manager.driver.switchTo().alert().accept();
         manager.driver.findElement(By.cssSelector("div.msgbox"));
     }
 
