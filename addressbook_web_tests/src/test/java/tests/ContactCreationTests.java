@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.io.File;
@@ -92,19 +95,35 @@ public class ContactCreationTests extends TestBase {
                 .withLastName(CommonFunctions.randomString(10))
                 .withPhone(CommonFunctions.randomString(10))
                 .withPhoto(randomFile("src/test/resources/images"));
-        if (app.hbm().getGroupCount()==0) {
+        if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
         }
         var group = app.hbm().getGroupList().get(0);
-
         var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().createContact(contact,group);
+        app.contacts().createContact(contact, group);
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());//в дз тут сравнить не только размер, но и содержимое списков тоже
     }
 
-
-
+    @Test
+    public void canAddContactInGroup() {
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));
+        }
+       var contact = new ContactData()
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhone(CommonFunctions.randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.contacts().addContactInGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+    }
 
 
     @Test
@@ -142,6 +161,38 @@ public class ContactCreationTests extends TestBase {
 }
 
 
+  /*  @Test
+    public void ContactAddToGroup(ContactData contact) {
+        app.driver.get("http://localhost/addressbook/");
+
+        app.driver.findElement(By.name("1543")).click();
+        app.driver.findElement(By.name("to_group")).click();
+        {
+            WebElement dropdown = app.driver.findElement(By.name("to_group"));
+            dropdown.findElement(By.xpath("//option[. = 'wefwe']")).click();
+        }
+        app.driver.findElement(By.name("add")).click();
+        //app.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+
+
+        //app.driver.manage().window().setSize(new Dimension(1184, 784));
+        //app.driver.findElement(By.name("user")).sendKeys("admin");
+        //app.driver.findElement(By.name("pass")).sendKeys("secret");
+        app.contacts().addContactInGroup(oldContacts.get(index), testData);
+        app.driver.findElement(By.cssSelector("input:nth-child(7)")).click();
+        app.driver.findElement(By.id("1543")).click();
+        app.driver.findElement(By.name("to_group")).click();
+        {
+            WebElement dropdown = app.driver.findElement(By.name("to_group"));
+            dropdown.findElement(By.xpath("//option[. = 'wefwe']")).click();
+        }
+        app.driver.findElement(By.name("add")).click();
+        app.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+    }
+    }
+}*/
+
+
 //app.driver.findElement(By.linkText("home")).click();
 //if (!app.isElementPresent(By.cssSelector("#maintable input[type='checkbox']:first-child"))) {
         /*if (!isElementPresent(By.id("1"))) {
@@ -152,6 +203,21 @@ public class ContactCreationTests extends TestBase {
 
 
         /*{
+
+         @Test
+  public void tes2() {
+    driver.get("http://localhost/addressbook/");
+    driver.manage().window().setSize(new Dimension(1184, 784));
+    driver.findElement(By.linkText("home")).click();
+    driver.findElement(By.name("group")).click();
+    {
+      WebElement dropdown = driver.findElement(By.name("group"));
+      dropdown.findElement(By.xpath("//option[. = 'wefwe']")).click();
+    }
+    driver.findElement(By.id("1543")).click();
+    driver.findElement(By.name("remove")).click();
+    driver.findElement(By.linkText("group page \"wefwe\"")).click();
+  }
             WebElement element = app.driver.findElement(By.name("firstname"));
             Actions builder = new Actions(app.driver);
             builder.doubleClick(element).perform();

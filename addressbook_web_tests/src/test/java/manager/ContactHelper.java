@@ -7,6 +7,7 @@ import model.ContactData;
 
 import model.GroupData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class ContactHelper extends HelperBase {
     }
 
 
+
+
     private void submitContactCreation() {
         manager.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
     }
@@ -75,6 +78,33 @@ public class ContactHelper extends HelperBase {
         returnToContactsPage();
     }
 
+    public void addContactInGroup(ContactData contact,GroupData group) {
+        openContactsPage(By.linkText("home"));
+        selectContact(contact);
+
+        {
+            WebElement dropdown = manager.driver.findElement(By.name("group"));
+            dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
+        }
+        selectGroupFromList(group);
+        //manager.driver.findElement(By.id("1544")).click();
+        selectGroupForContact();
+        returnToContactsPage();
+    }
+
+
+    private void selectGroupFromList(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+        manager.driver.findElement(By.name("add")).click();
+    }
+    private void selectGroupForContact() {
+        manager.driver.findElement(By.cssSelector("select[name='to_group']")).click();
+        //click(By.cssSelector(String.format("input[value='%s']", group.id())));
+       // manager.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+    }
+    private void selectContactForGroup(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+    }
     private void removeSelectedContact() {
         manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
     }

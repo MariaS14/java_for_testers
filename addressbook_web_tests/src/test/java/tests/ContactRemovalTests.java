@@ -48,7 +48,24 @@ public class ContactRemovalTests extends TestBase {
 
 
     }
+
+    @Test
+    public void tes2() {
+        app.driver.get("http://localhost/addressbook/");
+        app.driver.manage().window().setSize(new Dimension(1184, 784));
+        app.driver.findElement(By.linkText("home")).click();
+        app.driver.findElement(By.name("group")).click();
+        {
+            WebElement dropdown = app.driver.findElement(By.name("group"));
+            dropdown.findElement(By.xpath("//option[. = 'wefwe']")).click();
+        }
+        app.driver.findElement(By.id("1543")).click();
+        app.driver.findElement(By.name("remove")).click();
+        app.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+    }
 }
+
+
 
 //app.driver.findElement(By.linkText("home")).click();
 
