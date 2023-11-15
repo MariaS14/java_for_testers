@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.ContactCreationTests" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-11-15T09:33:06" hostname="DESKTOP-23VK9RO" time="12.974">
+  <properties/>
+  <testcase name="[1] ContactData[id=, firstname=, lastname=, phone=, photo=src\test\resources\images\man.jpg]" classname="tests.ContactCreationTests" time="1.222"/>
+  <testcase name="[2] ContactData[id=, firstname=xhbeetyvwz, lastname=rcwmfsahhd, phone=ujeyeahuzx, photo=src\test\resources\images\avatar.png]" classname="tests.ContactCreationTests" time="1.18"/>
+  <testcase name="[3] ContactData[id=, firstname=rdusiarkzujxruujfkfh, lastname=gcflqdkhjxmcxvvabtyk, phone=xbkkldfbdqfviegeuatf, photo=src\test\resources\images\avatar.png]" classname="tests.ContactCreationTests" time="1.285"/>
+  <testcase name="[4] ContactData[id=, firstname=gigfupuvcbvgovtmwjsqvcstocksvv, lastname=jsftdkkmesdzzrtaotgoizwjvfhnzx, phone=lvzbxiaftsrgsmplbwixyaxvmrhslx, photo=src\test\resources\images\cat.jpg]" classname="tests.ContactCreationTests" time="1.24"/>
+  <testcase name="[5] ContactData[id=, firstname=adiuxsmusiiivpfzrksngoatuiwopqygauelezhv, lastname=goqauuxfkzpkqdkkrqkyqihxinioytsyvqjlyxzg, phone=lsvjwgfjzvhcqbessxhelmotfuaabezuvnpysjhv, photo=src\test\resources\images\avatar.png]" classname="tests.ContactCreationTests" time="1.252"/>
+  <testcase name="[1] ContactData[id=, firstname=contact name', lastname=, phone=, photo=]" classname="tests.ContactCreationTests" time="1.692"/>
+  <testcase name="CreateContact()" classname="tests.ContactCreationTests" time="1.194"/>
+  <testcase name="canCreateContactWithEmptyName()" classname="tests.ContactCreationTests" time="1.164"/>
+  <testcase name="canCreateContactInGroup()" classname="tests.ContactCreationTests" time="1.525"/>
+  <testcase name="canCreateContactWithNameOnly()" classname="tests.ContactCreationTests" time="1.214"/>
+  <system-out><![CDATA[empty
+empty
+empty
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -26,7 +26,7 @@ public class ContactRecord {
     public String phone;
 
     @Column(name = "deprecated")
-    public Date deprecated = new Date();
+    public Date deprecated = null;
 
     public String email = "";
     public String middlename = "";

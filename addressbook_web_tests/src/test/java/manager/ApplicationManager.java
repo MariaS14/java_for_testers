@@ -37,6 +37,7 @@ public class ApplicationManager {
                 service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
                 service.build();
                 driver = new FirefoxDriver(service.build());
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 
             } else if ("chrome".equals(browser)) {
                 var service = createDefaultService();
