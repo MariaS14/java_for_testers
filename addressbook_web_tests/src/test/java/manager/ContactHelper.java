@@ -97,8 +97,8 @@ public class ContactHelper extends HelperBase {
 
     public void removeContactFromGroup(ContactData contact,GroupData group){
         openContactsPage(By.linkText("home"));
-        selectContact(contact);
         selectFromListGroup(group);
+        selectContact(contact);
         manager.driver.findElement(By.name("remove")).click();
         returnToContactsPage();
 

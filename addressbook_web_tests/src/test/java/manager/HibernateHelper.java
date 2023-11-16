@@ -55,8 +55,6 @@ public class HibernateHelper extends HelperBase {
             return session.createQuery("from GroupRecord", GroupRecord.class).list();
         }));
     }
-
-
     public void createGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -64,6 +62,14 @@ public class HibernateHelper extends HelperBase {
             session.getTransaction().commit();
         });
     }
+
+    /*public void createGroup(GroupData groupData) {
+        sessionFactory.inSession(session -> {
+            session.getTransaction().begin();
+            session.persist(convert(groupData));
+            session.getTransaction().commit();
+        });
+    }*/
 
 
     public long getGroupCount() {

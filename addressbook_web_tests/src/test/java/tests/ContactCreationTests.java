@@ -111,7 +111,6 @@ public class ContactCreationTests extends TestBase {
     @Test
     public void canAddContactInGroup() {
 
-
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));//проверка есть ли контакт- если нет создание
             if (app.hbm().getGroupCount() == 0) {
@@ -150,6 +149,8 @@ public class ContactCreationTests extends TestBase {
         newRelated.sort(compareById);
         expectedList.sort(compareById);
     }
+
+
 
 
     @Test
