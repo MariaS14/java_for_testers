@@ -56,6 +56,7 @@ public class HibernateHelper extends HelperBase {
         }));
     }
 
+
     public void createGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -119,13 +120,22 @@ public class HibernateHelper extends HelperBase {
 
 
     public List<ContactData> getContactsInGroup(GroupData group) {
-        return sessionFactory.fromSession(session -> {
+        return sessionFactory.fromSession(session -> {//выполняет функцию в рамках сессии и возвращает результат ее работы
             return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
+
         });
     }
 }
 
+//метод session.get получение объекта по идентификатору.GroupRecord - объект, идентификатор - group.Id
 
+
+//тут запрос в БД, который
+//по идентификатору группы находит все контакты, которые включены в эту группу
+//для того чтобы найти все контакты входящие в группу - надо в таблице address in groups найти все все связи С
+// заданным идентификатором группы и по индектификаторам контакта  - найти эти контакты в другой таблице
+
+//тут не надо писать запрос в БД, просто теперь получаем объект GroupRecord,зная идентификатор, а потом бере свойство contacts
 
 
 

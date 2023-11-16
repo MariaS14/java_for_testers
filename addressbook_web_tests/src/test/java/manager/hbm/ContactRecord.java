@@ -1,11 +1,9 @@
 package manager.hbm;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "addressbook")
@@ -53,6 +51,13 @@ public class ContactRecord {
     public String home = "";
     public String address = "";
 
+
+    @ManyToMany//если каждый контакт мог бы входить только в одну группу мы бы использовали ManyToOne
+    @JoinTable(name = "address_in_groups",//таблица соединяющая
+            joinColumns = @JoinColumn(name = "id"),//указывает на группу
+            inverseJoinColumns = @JoinColumn(name ="group_id"))//указывает на контакт
+
+    public List<GroupRecord> group; // это свойство описывает связь с объектами типа ContactRecord, связанные объекты - достыет Хибернет
 
     public ContactRecord() {
     }

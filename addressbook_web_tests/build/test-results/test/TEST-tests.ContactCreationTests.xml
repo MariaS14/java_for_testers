@@ -1,34 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactCreationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-15T22:08:20" hostname="DESKTOP-23VK9RO" time="9.47">
+<testsuite name="tests.ContactCreationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-16T15:00:00" hostname="DESKTOP-23VK9RO" time="8.176">
   <properties/>
-  <testcase name="canAddContactInGroup()" classname="tests.ContactCreationTests" time="9.47">
-    <failure message="org.openqa.selenium.NoSuchElementException: Unable to locate element: select[name='to_group']&#10;For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception&#10;Build info: version: '4.14.1', revision: '03f8ede370'&#10;System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'&#10;Driver info: org.openqa.selenium.firefox.FirefoxDriver&#10;Command: [f6e34136-85ce-45a1-8def-7e6ba9ffbc86, findElement {using=css selector, value=select[name='to_group']}]&#10;Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 119.0.1, moz:accessibilityChecks: false, moz:buildID: 20231106151204, moz:debuggerAddress: 127.0.0.1:12844, moz:geckodriverVersion: 0.33.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 10324, moz:profile: C:\Users\03C6~1\AppData\Loc..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:12844/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}&#10;Session ID: f6e34136-85ce-45a1-8def-7e6ba9ffbc86" type="org.openqa.selenium.NoSuchElementException">org.openqa.selenium.NoSuchElementException: Unable to locate element: select[name='to_group']
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
-Build info: version: '4.14.1', revision: '03f8ede370'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.8.1'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Command: [f6e34136-85ce-45a1-8def-7e6ba9ffbc86, findElement {using=css selector, value=select[name='to_group']}]
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 119.0.1, moz:accessibilityChecks: false, moz:buildID: 20231106151204, moz:debuggerAddress: 127.0.0.1:12844, moz:geckodriverVersion: 0.33.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 10324, moz:profile: C:\Users\03C6~1\AppData\Loc..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://127.0.0.1:12844/devtoo..., se:cdpVersion: 85.0, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: f6e34136-85ce-45a1-8def-7e6ba9ffbc86
-	at java.base@17.0.8.1/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base@17.0.8.1/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base@17.0.8.1/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base@17.0.8.1/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base@17.0.8.1/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at app//org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at app//org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at app//org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at app//org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at app//org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:200)
-	at app//org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:175)
-	at app//org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:602)
-	at app//org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at app//org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at app//org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
-	at app//org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:353)
-	at app//manager.ContactHelper.selectGroupForContact(ContactHelper.java:101)
-	at app//manager.ContactHelper.addContactInGroup(ContactHelper.java:91)
-	at app//tests.ContactCreationTests.canAddContactInGroup(ContactCreationTests.java:123)
+  <testcase name="canAddContactInGroup()" classname="tests.ContactCreationTests" time="8.176">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;2&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;2&gt; but was: &lt;1&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
+	at app//tests.ContactCreationTests.canAddContactInGroup(ContactCreationTests.java:130)
 	at java.base@17.0.8.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@17.0.8.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base@17.0.8.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -116,27 +97,27 @@ Session ID: f6e34136-85ce-45a1-8def-7e6ba9ffbc86
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[нояб. 16, 2023 1:08:23 AM org.hibernate.Version logVersion
+  <system-err><![CDATA[нояб. 16, 2023 6:00:04 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.3.0.CR1
-нояб. 16, 2023 1:08:23 AM org.hibernate.cfg.Environment <clinit>
+нояб. 16, 2023 6:00:04 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000406: Using bytecode reflection optimizer
-нояб. 16, 2023 1:08:23 AM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+нояб. 16, 2023 6:00:04 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull]
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=root}
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-нояб. 16, 2023 1:08:23 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-нояб. 16, 2023 1:08:24 AM org.hibernate.dialect.Dialect checkVersion
+нояб. 16, 2023 6:00:05 PM org.hibernate.dialect.Dialect checkVersion
 WARN: HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
-нояб. 16, 2023 1:08:25 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+нояб. 16, 2023 6:00:07 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 ]]></system-err>
 </testsuite>

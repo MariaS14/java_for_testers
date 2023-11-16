@@ -27,12 +27,12 @@ public class GroupRecord {
 
     public Date deprecated = new Date();
 
-    @ManyToMany
-    @JoinTable(name = "address_in_groups",
-            joinColumns = @JoinColumn(name = "group_id"),
-    inverseJoinColumns = @JoinColumn(name ="id"))
+    @ManyToMany//если каждый контакт мог бы входить только в одну группу мы бы использовали ManyToOne
+    @JoinTable(name = "address_in_groups",//таблица соединяющая
+            joinColumns = @JoinColumn(name = "group_id"),//указывает на группу
+    inverseJoinColumns = @JoinColumn(name ="id"))//указывает на контакт
 
-    public List<ContactRecord> contacts;
+    public List<ContactRecord> contacts; // это свойство описывает связь с объектами типа ContactRecord, связанные объекты - достыет Хибернет
 
 
 

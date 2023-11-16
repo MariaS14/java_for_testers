@@ -37,16 +37,18 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         returnToContactsPage();    }
 
-    public void createContact(ContactData contact,GroupData group) {
+    public void createContact(ContactData contact,GroupData group) {//метод принимает на вход контакт и группу
         openContactsPage(By.linkText("home"));
         initContactCreation();
-        fillContactForm(contact);
+        fillContactForm(contact);// после заполнения формы контакта - метод должен выбрать группу из выпадающего списка
         selectGroup(group);
         submitContactCreation();
         returnToContactsPage();    }
 
-    private void selectGroup(GroupData group) {
-        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
+    private void selectGroup(GroupData group) { //находит на странице нужный элемент
+        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());//класс Select входит в библиотеку Селениум и предназначен
+        //для работы с выпадающими списками
+        //передаем идентификатор group.id - содержит инфу о группах в индектификаторе value
 
     }
 
@@ -81,21 +83,24 @@ public class ContactHelper extends HelperBase {
     public void addContactInGroup(ContactData contact,GroupData group) {
         openContactsPage(By.linkText("home"));
         selectContact(contact);
-
-        {
-            WebElement dropdown = manager.driver.findElement(By.name("group"));
-            dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
-        }
         selectGroupFromList(group);
+        manager.driver.findElement(By.name("add")).click();
         //manager.driver.findElement(By.id("1544")).click();
-        selectGroupForContact();
+        //click (By.cssSelector(("String.format(\"input[value='%s']\", contact.id()")));
+        //selectGroupForContact();
         returnToContactsPage();
     }
+    {
+        WebElement dropdown = manager.driver.findElement(By.name("group"));
+        dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
+    }
 
+    private void selectContact(ContactData contact) {
+        click (By.cssSelector(String.format("input[value='%s']",contact.id())));
 
+    }
     private void selectGroupFromList(GroupData group) {
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
-        manager.driver.findElement(By.name("add")).click();
     }
     private void selectGroupForContact() {
         manager.driver.findElement(By.cssSelector("select[name='to_group']")).click();
@@ -109,14 +114,12 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
     }
 
-    private void selectContact(ContactData contact) {
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
-        click (By.cssSelector(String.format("input[value='%s']",contact.id())));
+
         //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
         //manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id()))).click();
         //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
+        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
 
-    }
 
     public int getCountContact() {
         openContactsPage(By.linkText("home"));

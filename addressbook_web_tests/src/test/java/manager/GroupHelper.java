@@ -103,10 +103,9 @@ public class GroupHelper extends HelperBase {
     }
 
     private void selectAllGroups() {
-        var checkboxes = manager.driver.findElements(By.name("selected[]"));
-        for (var checkbox : checkboxes) {
-            checkbox.click();
-        }
+        manager.driver
+                .findElements(By.name("selected[]"))
+                .forEach(WebElement::click);
         // removeSelectedGroups();
     }
 
