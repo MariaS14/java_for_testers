@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactRemovalTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-16T20:24:15" hostname="DESKTOP-23VK9RO" time="6.758">
+<testsuite name="tests.ContactCreationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-16T20:31:31" hostname="DESKTOP-23VK9RO" time="6.578">
   <properties/>
-  <testcase name="canRemoveContactFromGroup()" classname="tests.ContactRemovalTests" time="6.758">
+  <testcase name="canAddContactInGroup()" classname="tests.ContactCreationTests" time="6.578">
     <failure message="java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0" type="java.lang.IndexOutOfBoundsException">java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
 	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
 	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
 	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
 	at java.base/java.util.Objects.checkIndex(Objects.java:361)
 	at java.base/java.util.ArrayList.get(ArrayList.java:427)
-	at tests.ContactRemovalTests.canRemoveContactFromGroup(ContactRemovalTests.java:65)
+	at tests.ContactCreationTests.canAddContactInGroup(ContactCreationTests.java:124)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -96,27 +96,27 @@
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[нояб. 16, 2023 11:24:20 PM org.hibernate.Version logVersion
+  <system-err><![CDATA[нояб. 16, 2023 11:31:36 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.3.0.CR1
-нояб. 16, 2023 11:24:20 PM org.hibernate.cfg.Environment <clinit>
+нояб. 16, 2023 11:31:36 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000406: Using bytecode reflection optimizer
-нояб. 16, 2023 11:24:20 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+нояб. 16, 2023 11:31:36 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull]
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=root}
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-нояб. 16, 2023 11:24:20 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+нояб. 16, 2023 11:31:36 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-нояб. 16, 2023 11:24:20 PM org.hibernate.dialect.Dialect checkVersion
+нояб. 16, 2023 11:31:36 PM org.hibernate.dialect.Dialect checkVersion
 WARN: HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
-нояб. 16, 2023 11:24:21 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+нояб. 16, 2023 11:31:38 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 ]]></system-err>
 </testsuite>

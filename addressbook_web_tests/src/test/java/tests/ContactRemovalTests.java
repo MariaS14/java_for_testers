@@ -54,7 +54,7 @@ public class ContactRemovalTests extends TestBase {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));//проверка есть ли контакт- если нет создание
-        if (app.hbm().getGroupCount() == 0) {
+            if (app.hbm().getGroupCount() == 0) {
                 app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));//проверка есть ли группа- если нет создаем
             }
         }
@@ -197,8 +197,6 @@ public class ContactRemovalTests extends TestBase {
         app.driver.findElement(By.id("1543")).click();
         app.driver.findElement(By.name("remove")).click();
         app.driver.findElement(By.linkText("group page \"wefwe\"")).click();*/
-
-
 
 
 //app.driver.findElement(By.linkText("home")).click();
