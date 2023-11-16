@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ContactCreationTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-16T15:00:00" hostname="DESKTOP-23VK9RO" time="8.176">
+<testsuite name="tests.ContactRemovalTests" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-16T15:49:23" hostname="DESKTOP-23VK9RO" time="8.405">
   <properties/>
-  <testcase name="canAddContactInGroup()" classname="tests.ContactCreationTests" time="8.176">
-    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;2&gt; but was: &lt;1&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;2&gt; but was: &lt;1&gt;
+  <testcase name="canRemoveContactFromGroup()" classname="tests.ContactRemovalTests" time="8.405">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;1&gt; but was: &lt;2&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;1&gt; but was: &lt;2&gt;
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
 	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
 	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:528)
-	at app//tests.ContactCreationTests.canAddContactInGroup(ContactCreationTests.java:130)
+	at app//tests.ContactRemovalTests.canRemoveContactFromGroup(ContactRemovalTests.java:89)
 	at java.base@17.0.8.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@17.0.8.1/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base@17.0.8.1/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -97,27 +97,27 @@
 </failure>
   </testcase>
   <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[нояб. 16, 2023 6:00:04 PM org.hibernate.Version logVersion
+  <system-err><![CDATA[нояб. 16, 2023 6:49:27 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.3.0.CR1
-нояб. 16, 2023 6:00:04 PM org.hibernate.cfg.Environment <clinit>
+нояб. 16, 2023 6:49:27 PM org.hibernate.cfg.Environment <clinit>
 INFO: HHH000406: Using bytecode reflection optimizer
-нояб. 16, 2023 6:00:04 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+нояб. 16, 2023 6:49:27 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull]
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=root}
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-нояб. 16, 2023 6:00:05 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+нояб. 16, 2023 6:49:27 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-нояб. 16, 2023 6:00:05 PM org.hibernate.dialect.Dialect checkVersion
+нояб. 16, 2023 6:49:28 PM org.hibernate.dialect.Dialect checkVersion
 WARN: HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
-нояб. 16, 2023 6:00:07 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+нояб. 16, 2023 6:49:29 PM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
 INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 ]]></system-err>
 </testsuite>

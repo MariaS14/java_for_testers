@@ -125,6 +125,21 @@ public class ContactCreationTests extends TestBase {
         var group = app.hbm().getGroupList().get(0);//получаем список групп и выбираем 1ю из них group = oldGroups.Выбрана группа, именно в нее будет включен созданный контакт
         //проверка какие контакты были включены в эту группу до тестирования
         var oldRelated = app.hbm().getContactsInGroup(group);//получили список контактов, которые входят в заданную группу
+        boolean contactAlreadyInGroup = oldRelated.contains(testData);
+
+        if (!contactAlreadyInGroup) {
+            app.contacts().addContactInGroup(testData, group);
+            var newRelated = app.hbm().getContactsInGroup(group);
+            Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+        } else {
+            //иначе создаем нровый контакт и добавляем в группу
+            var contact = new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withPhone(CommonFunctions.randomString(10))
+                    .withPhoto(randomFile("src/test/resources/images"));
+            app.contacts().createContact(contact, group);//операция создания
+        }
         app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());

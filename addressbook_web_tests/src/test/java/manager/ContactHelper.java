@@ -95,6 +95,21 @@ public class ContactHelper extends HelperBase {
         dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
     }
 
+    public void removeContactFromGroup(ContactData contact,GroupData group){
+        openContactsPage(By.linkText("home"));
+        selectContact(contact);
+        selectFromListGroup(group);
+        manager.driver.findElement(By.name("remove")).click();
+        returnToContactsPage();
+
+    }
+
+
+
+    private void selectFromListGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+
     private void selectContact(ContactData contact) {
         click (By.cssSelector(String.format("input[value='%s']",contact.id())));
 

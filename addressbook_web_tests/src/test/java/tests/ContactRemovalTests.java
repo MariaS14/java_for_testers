@@ -5,8 +5,10 @@ import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
+import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -50,8 +52,49 @@ public class ContactRemovalTests extends TestBase {
     }
 
     @Test
-    public void tes2() {
-        app.driver.get("http://localhost/addressbook/");
+    public void canRemoveContactFromGroup() {
+
+
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));//проверка есть ли контакт- если нет создание
+            if (app.hbm().getGroupCount() == 0) {
+                app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));//проверка есть ли группа- если нет создаем
+            }
+        }
+        var oldContacts = app.hbm().getContactList();
+        var rnd = new Random();
+        var index = rnd.nextInt(oldContacts.size());//Генерируем случайный индекс в пределах размера списка oldContacts.
+        var testData = oldContacts.get(index);//Получаем случайный контакт из списка oldContacts с использованием сгенерированного индекса.
+        var group = app.hbm().getGroupList().get(0);//получаем список групп и выбираем 1ю из них group = oldGroups.Выбрана группа, именно в нее будет включен созданный контакт
+        //проверка какие контакты были включены в эту группу до тестирования
+        var oldRelated = app.hbm().getContactsInGroup(group);//получили список контактов, которые входят в заданную группу
+        boolean contactAlreadyInGroup = oldRelated.contains(testData);
+
+        if (!contactAlreadyInGroup) {
+            var contact = new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withPhone(CommonFunctions.randomString(10))
+                    .withPhoto(randomFile("src/test/resources/images"));
+            app.contacts().createContact(contact, group);//операция создания если контакт не в группе
+
+        } else {
+            //иначе создаем нровый контакт и добавляем в группу
+            app.contacts().removeContactFromGroup(testData, group);
+            var newRelated = app.hbm().getContactsInGroup(group);
+            //Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
+        }
+        app.contacts().removeContactFromGroup(testData, group);//добавили контакт в группу
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
+        Comparator<ContactData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        var expectedList = new ArrayList<>(oldRelated);
+        newRelated.sort(compareById);
+        expectedList.sort(compareById);
+    }
+        /*app.driver.get("http://localhost/addressbook/");
         app.driver.manage().window().setSize(new Dimension(1184, 784));
         app.driver.findElement(By.linkText("home")).click();
         app.driver.findElement(By.name("group")).click();
@@ -61,9 +104,8 @@ public class ContactRemovalTests extends TestBase {
         }
         app.driver.findElement(By.id("1543")).click();
         app.driver.findElement(By.name("remove")).click();
-        app.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+        app.driver.findElement(By.linkText("group page \"wefwe\"")).click();*/
     }
-}
 
 
 
