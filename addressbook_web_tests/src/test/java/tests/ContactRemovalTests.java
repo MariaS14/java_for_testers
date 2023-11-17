@@ -50,7 +50,6 @@ public class ContactRemovalTests extends TestBase {
 
     @Test
     public void canRemoveContactFromGroup() {
-
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));//проверка есть ли контакт- если нет создание
@@ -67,19 +66,24 @@ public class ContactRemovalTests extends TestBase {
         var oldRelated = app.hbm().getContactsInGroup(group);//получили список контактов, которые входят в заданную группу
         boolean contactAlreadyInGroup = oldRelated.contains(testData);
 
-        if (!contactAlreadyInGroup) {
+        if (!contactAlreadyInGroup) {// если контакт не в группе,создаем контакт в группе
             var contact = new ContactData()
                     .withFirstName(CommonFunctions.randomString(10))
                     .withLastName(CommonFunctions.randomString(10))
                     .withPhone(CommonFunctions.randomString(10))
                     .withPhoto(randomFile("src/test/resources/images"));
-            app.contacts().createContact(contact, group);//операция создания если контакт не в группе
+            if (app.hbm().getGroupCount() == 0) {//если никакой группы нет - создаем
+                app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+            }
+            //проверка какие контакты были включены в эту группу до тестировани
+            app.contacts().createContact(contact, group);//операция создания
+            var newRelated = app.hbm().getContactsInGroup(group);//получили новый список
 
         } else {
-            //иначе создаем новый контакт и добавляем в группу
+            //иначе создаем нровый контакт и добавляем в группу
             app.contacts().removeContactFromGroup(testData, group);
             var newRelated = app.hbm().getContactsInGroup(group);
-            //Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
+            Assertions.assertEquals(oldRelated.size() - 1, newRelated.size());
         }
         app.contacts().removeContactFromGroup(testData, group);//добавили контакт в группу
         var newRelated = app.hbm().getContactsInGroup(group);
@@ -139,7 +143,7 @@ public class ContactRemovalTests extends TestBase {
         expectedList.sort(compareById);
     }
 
-    /*@Test
+    @Test
     public void canRemoveContactFromGroup() {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.hbm().getContactCount() == 0) {
@@ -197,6 +201,8 @@ public class ContactRemovalTests extends TestBase {
         app.driver.findElement(By.id("1543")).click();
         app.driver.findElement(By.name("remove")).click();
         app.driver.findElement(By.linkText("group page \"wefwe\"")).click();*/
+
+
 
 
 //app.driver.findElement(By.linkText("home")).click();

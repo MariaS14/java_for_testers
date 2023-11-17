@@ -101,7 +101,6 @@ public class ContactHelper extends HelperBase {
         selectContact(contact);
         manager.driver.findElement(By.name("remove")).click();
         returnToContactsPage();
-
     }
 
 
@@ -120,7 +119,7 @@ public class ContactHelper extends HelperBase {
     private void selectGroupForContact() {
         manager.driver.findElement(By.cssSelector("select[name='to_group']")).click();
         //click(By.cssSelector(String.format("input[value='%s']", group.id())));
-       // manager.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+        // manager.driver.findElement(By.linkText("group page \"wefwe\"")).click();
     }
     private void selectContactForGroup(ContactData contact) {
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
@@ -130,10 +129,10 @@ public class ContactHelper extends HelperBase {
     }
 
 
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
-        //manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id()))).click();
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
-        //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
+    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
+    //manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id()))).click();
+    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
+    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
 
 
     public int getCountContact() {
