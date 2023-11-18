@@ -90,7 +90,11 @@ public class HibernateHelper extends HelperBase {
         return new ContactData().withId("" + record.id)
                 .withFirstName(record.firstname)
                 .withLastName(record.lastname)
-                .withPhone(record.phone);
+                .withPhone(record.phone)
+                .withAddress(record.address)
+                .withHome(record.home)
+                .withWork(record.work)
+                .withSecondary(record.phone2);
     }
 
     private static ContactRecord convertContact(ContactData data) {

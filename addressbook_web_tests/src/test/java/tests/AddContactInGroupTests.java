@@ -15,7 +15,7 @@ public class AddContactInGroupTests extends TestBase {
     public void canAddContactInGroup() {
 
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));//проверка есть ли контакт- если нет создание
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));//проверка есть ли контакт- если нет создание
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));//проверка есть ли группа- если нет создаем
@@ -54,5 +54,7 @@ public class AddContactInGroupTests extends TestBase {
         var expectedList = new ArrayList<>(oldRelated);
         newRelated.sort(compareById);
         expectedList.sort(compareById);
+        Assertions.assertEquals(newRelated, expectedList);
+
     }
 }

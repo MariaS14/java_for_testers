@@ -26,12 +26,16 @@ public class ContactRecord {
     @Column(name = "deprecated")
     public Date deprecated = null;
 
+    public String address;
+    public String work;
+    public String home;
+    public String phone2;
+
     public String email = "";
     public String middlename = "";
     public String nickname = "";
     public String company = "";
     public String title = "";
-    public String work = "";
     public String fax = "";
     public String email2 = "";
     public String email3 = "";
@@ -46,10 +50,8 @@ public class ContactRecord {
     public String amonth = "";
     public String ayear = "";
     public String address2 = "";
-    public String phone2 = "";
     public String notes = "";
-    public String home = "";
-    public String address = "";
+
 
 
     @ManyToMany//если каждый контакт мог бы входить только в одну группу мы бы использовали ManyToOne

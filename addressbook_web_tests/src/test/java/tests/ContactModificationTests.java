@@ -1,12 +1,8 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,7 +14,7 @@ public class ContactModificationTests extends TestBase{
 
     void canModifyContact(){
         if (app.hbm().getContactCount()==0){
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone",""));
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone","", "", "", "", ""));
         }
         /*app.contacts().modifyContact(new ContactData().withName("modified name"));*/
         var oldContacts = app.hbm(). getContactList();

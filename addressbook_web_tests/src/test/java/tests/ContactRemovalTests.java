@@ -1,15 +1,11 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
-import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
 
@@ -21,7 +17,7 @@ public class ContactRemovalTests extends TestBase {
     public void canRemoveContact() {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));
         }
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
@@ -40,7 +36,7 @@ public class ContactRemovalTests extends TestBase {
     void canRemoveAllContactsAtOnce() {
         app.contacts().openContactsPage(By.linkText("home"));
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));
         }
         app.contacts().removeAllContacts();
         Assertions.assertEquals(0, app.contacts().getCountContact());

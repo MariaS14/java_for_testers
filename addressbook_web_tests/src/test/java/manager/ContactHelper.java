@@ -247,4 +247,10 @@ public class ContactHelper extends HelperBase {
         click(By.cssSelector(String.format("a[href^='edit.php?id=%s'] img", contact.id())));
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
     }
+
+    public String getPhones(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
+
+    }
 }

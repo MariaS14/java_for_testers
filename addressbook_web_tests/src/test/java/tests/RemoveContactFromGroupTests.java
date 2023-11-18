@@ -4,8 +4,6 @@ import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,7 +13,7 @@ public class RemoveContactFromGroupTests extends TestBase {
     @Test
     public void canRemoveContactFromGroup() {
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", ""));
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
@@ -38,6 +36,8 @@ public class RemoveContactFromGroupTests extends TestBase {
             var expectedList = new ArrayList<>(oldRelated);
             newRelated.sort(compareById);
             expectedList.sort(compareById);
+            Assertions.assertEquals(newRelated, expectedList);
+
         } else {
             app.contacts().addContactInGroup(testData, group);//добавление контакта в группу
             app.contacts().removeContactFromGroup(testData, group);
@@ -49,6 +49,7 @@ public class RemoveContactFromGroupTests extends TestBase {
             var expectedList = new ArrayList<>(oldRelated);
             newRelated.sort(compareById);
             expectedList.sort(compareById);
+            Assertions.assertEquals(newRelated, expectedList);
 
         }
 

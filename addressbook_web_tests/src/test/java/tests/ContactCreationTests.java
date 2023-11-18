@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.common.CommonFunctions;
 
 import java.io.File;
@@ -19,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
 
 public class ContactCreationTests extends TestBase {
 
@@ -128,7 +124,7 @@ public class ContactCreationTests extends TestBase {
 
     public static @NotNull List<ContactData> negativeContactProvider() {
         var result = new ArrayList<ContactData>(List.of(
-                new ContactData("", "contact name'", "", "", "")));
+                new ContactData("", "contact name'", "", "", "", "", "", "", "")));
         return result;
     }
 
