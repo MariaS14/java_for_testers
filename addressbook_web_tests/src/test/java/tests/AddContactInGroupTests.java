@@ -33,6 +33,13 @@ public class AddContactInGroupTests extends TestBase {
             app.contacts().addContactInGroup(testData, group);
             var newRelated = app.hbm().getContactsInGroup(group);
             Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+            Comparator<ContactData> compareById = (o1, o2) -> {
+                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+            };
+            var expectedList = new ArrayList<>(oldRelated);
+            newRelated.sort(compareById);
+            expectedList.sort(compareById);
+            Assertions.assertEquals(newRelated, expectedList);
         } else {
             //иначе создаем нровый контакт и добавляем в группу
             var contact = new ContactData()
@@ -40,12 +47,20 @@ public class AddContactInGroupTests extends TestBase {
                     .withLastName(CommonFunctions.randomString(10))
                     .withPhone(CommonFunctions.randomString(10))
                     .withPhoto(randomFile("src/test/resources/images"));
+
             app.contacts().createContact(contact, group);//операция создания
             var newRelated = app.hbm().getContactsInGroup(group);
-            Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+            Assertions.assertEquals(oldRelated.size()+ 1 , newRelated.size());
+            Comparator<ContactData> compareById = (o1, o2) -> {
+                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+            };
+            var expectedList = new ArrayList<>(oldRelated);
+            newRelated.sort(compareById);
+            expectedList.sort(compareById);
+            Assertions.assertEquals(newRelated, expectedList);}
 
         }
-        app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
+        /*app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
         Comparator<ContactData> compareById = (o1, o2) -> {
@@ -54,7 +69,6 @@ public class AddContactInGroupTests extends TestBase {
         var expectedList = new ArrayList<>(oldRelated);
         newRelated.sort(compareById);
         expectedList.sort(compareById);
-        Assertions.assertEquals(newRelated, expectedList);
+        Assertions.assertEquals(newRelated, expectedList);*/
 
     }
-}
