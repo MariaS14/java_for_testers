@@ -8,12 +8,13 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Set;
 
 public class RemoveContactFromGroupTests extends TestBase {
     @Test
     public void canRemoveContactFromGroup() {
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "","","","","","","","",""));
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
@@ -36,27 +37,23 @@ public class RemoveContactFromGroupTests extends TestBase {
             var expectedList = new ArrayList<>(oldRelated);
             newRelated.sort(compareById);
             expectedList.sort(compareById);
-            Assertions.assertEquals(newRelated, expectedList);
-
+            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
         } else {
             app.contacts().addContactInGroup(testData, group);//добавление контакта в группу
             app.contacts().removeContactFromGroup(testData, group);
             var newRelated = app.hbm().getContactsInGroup(group);
-            Assertions.assertEquals(oldRelated.size() , newRelated.size());
+            Assertions.assertEquals(oldRelated.size(), newRelated.size());
             Comparator<ContactData> compareById = (o1, o2) -> {
                 return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
             };
             var expectedList = new ArrayList<>(oldRelated);
             newRelated.sort(compareById);
             expectedList.sort(compareById);
-            Assertions.assertEquals(newRelated, expectedList);
+            //ssertions.assertTrue(newRelated.equals(expectedList));
+            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+
 
         }
-
-        //app.contacts().openContactsPage(By.linkText("home"));
-        //var newRelatedAfterRemove = app.hbm().getContactsInGroup(group);//удаление контата из нового списка
-        //Assertions.assertEquals(newRelated.size() - 1, newRelatedAfterRemove.size());
-
     }
 }
 

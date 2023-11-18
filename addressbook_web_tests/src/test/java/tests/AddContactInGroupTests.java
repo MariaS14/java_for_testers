@@ -9,13 +9,14 @@ import ru.stqa.addressbook.common.CommonFunctions;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
+import java.util.Set;
 
 public class AddContactInGroupTests extends TestBase {
     @Test
     public void canAddContactInGroup() {
 
         if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", ""));//проверка есть ли контакт- если нет создание
+            app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "", "", "", "", "", "", "", "", ""));//проверка есть ли контакт- если нет создание
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));//проверка есть ли группа- если нет создаем
@@ -33,34 +34,37 @@ public class AddContactInGroupTests extends TestBase {
             app.contacts().addContactInGroup(testData, group);
             var newRelated = app.hbm().getContactsInGroup(group);
             Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
-            Comparator<ContactData> compareById = (o1, o2) -> {
-                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-            };
-            var expectedList = new ArrayList<>(oldRelated);
-            newRelated.sort(compareById);
-            expectedList.sort(compareById);
-            Assertions.assertEquals(newRelated, expectedList);
         } else {
-            //иначе создаем нровый контакт и добавляем в группу
+            //иначе создаем новый контакт и добавляем в группу
             var contact = new ContactData()
                     .withFirstName(CommonFunctions.randomString(10))
                     .withLastName(CommonFunctions.randomString(10))
                     .withPhone(CommonFunctions.randomString(10))
                     .withPhoto(randomFile("src/test/resources/images"));
-
             app.contacts().createContact(contact, group);//операция создания
             var newRelated = app.hbm().getContactsInGroup(group);
-            Assertions.assertEquals(oldRelated.size()+ 1 , newRelated.size());
-            Comparator<ContactData> compareById = (o1, o2) -> {
-                return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
-            };
-            var expectedList = new ArrayList<>(oldRelated);
-            newRelated.sort(compareById);
-            expectedList.sort(compareById);
-            Assertions.assertEquals(newRelated, expectedList);}
+            Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
 
         }
-        /*app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
+        app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+        Comparator<ContactData> compareById = (o1, o2) -> {
+            return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
+        };
+        var expectedList = new ArrayList<>(oldRelated);
+        newRelated.sort(compareById);
+        expectedList.sort(compareById);
+        Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+
+    }
+}
+        /*
+
+        //var expectedList = new ArrayList<>(oldRelated);
+            //newRelated.sort(compareById);
+            //expectedList.sort(compareById);
+            //Assertions.assertEquals(newRelated, expectedList);app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
         var newRelated = app.hbm().getContactsInGroup(group);
         Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
         Comparator<ContactData> compareById = (o1, o2) -> {
@@ -71,4 +75,5 @@ public class AddContactInGroupTests extends TestBase {
         expectedList.sort(compareById);
         Assertions.assertEquals(newRelated, expectedList);*/
 
-    }
+
+

@@ -1,5 +1,6 @@
 package manager;
 
+import java.util.HashMap;
 import java.util.List;
 
 import model.ContactData;
@@ -11,8 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
-
-
+import java.util.Map;
 
 
 public class ContactHelper extends HelperBase {
@@ -25,6 +25,7 @@ public class ContactHelper extends HelperBase {
     private void initContactCreation() {
         manager.driver.findElement(By.linkText("add new")).click();
     }
+
     public void openContactsPage(By home) {
         manager.driver.findElement(home).click();
     }
@@ -35,15 +36,17 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contact);
         submitContactCreation();
-        returnToContactsPage();    }
+        returnToContactsPage();
+    }
 
-    public void createContact(ContactData contact,GroupData group) {//метод принимает на вход контакт и группу
+    public void createContact(ContactData contact, GroupData group) {//метод принимает на вход контакт и группу
         openContactsPage(By.linkText("home"));
         initContactCreation();
         fillContactForm(contact);// после заполнения формы контакта - метод должен выбрать группу из выпадающего списка
         selectGroup(group);
         submitContactCreation();
-        returnToContactsPage();    }
+        returnToContactsPage();
+    }
 
     private void selectGroup(GroupData group) { //находит на странице нужный элемент
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());//класс Select входит в библиотеку Селениум и предназначен
@@ -53,20 +56,15 @@ public class ContactHelper extends HelperBase {
     }
 
 
-
-
     private void submitContactCreation() {
         manager.driver.findElement(By.cssSelector("input:nth-child(87)")).click();
     }
-
-
 
 
     public void removeContact(ContactData contacts) {
         openContactsPage(By.linkText("home"));
         selectContact(contacts);
         removeSelectedContact();
-        //MatcherAssert.assertThat(manager.driver.switchTo().alert().getText(), is("Delete 1 addresses?"));
         manager.driver.switchTo().alert().accept();
         manager.driver.findElement(By.cssSelector("div.msgbox"));
     }
@@ -80,7 +78,7 @@ public class ContactHelper extends HelperBase {
         returnToContactsPage();
     }
 
-    public void addContactInGroup(ContactData contact,GroupData group) {
+    public void addContactInGroup(ContactData contact, GroupData group) {
         openContactsPage(By.linkText("home"));
         selectContact(contact);
         selectGroupFromList(group);
@@ -90,12 +88,13 @@ public class ContactHelper extends HelperBase {
         //selectGroupForContact();
         returnToContactsPage();
     }
+
     {
         WebElement dropdown = manager.driver.findElement(By.name("group"));
         dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
     }
 
-    public void removeContactFromGroup(ContactData contact,GroupData group){
+    public void removeContactFromGroup(ContactData contact, GroupData group) {
         openContactsPage(By.linkText("home"));
         selectFromListGroup(group);
         selectContact(contact);
@@ -104,41 +103,38 @@ public class ContactHelper extends HelperBase {
     }
 
 
-
     private void selectFromListGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
 
     private void selectContact(ContactData contact) {
-        click (By.cssSelector(String.format("input[value='%s']",contact.id())));
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
 
     }
+
     private void selectGroupFromList(GroupData group) {
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
     }
+
     private void selectGroupForContact() {
         manager.driver.findElement(By.cssSelector("select[name='to_group']")).click();
-        //click(By.cssSelector(String.format("input[value='%s']", group.id())));
-        // manager.driver.findElement(By.linkText("group page \"wefwe\"")).click();
+
     }
+
     private void selectContactForGroup(ContactData contact) {
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
+
     private void removeSelectedContact() {
         manager.driver.findElement(By.cssSelector("input[value='Delete']")).click();
     }
 
 
-    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']")).click();
-    //manager.driver.findElement(By.cssSelector(String.format("#maintable input[type='checkbox']:first-child",contact.id()))).click();
-    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")),contact.id();
-    //manager.driver.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child")).click();
+
 
 
     public int getCountContact() {
         openContactsPage(By.linkText("home"));
-        //return manager.driver.findElements(By.cssSelector("#maintable input[type='checkbox']:first-child")).size();
-        //return manager.driver.findElements(By.name("selected[]")).size();
         return manager.driver.findElements(By.name("entry")).size();
 
     }
@@ -161,19 +157,6 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    /*public List<ContactData> getListContacts() {
-        var contacts = new ArrayList<ContactData>();
-        var tds = manager.driver.findElements(By.cssSelector("td.center"));
-        for (var td : tds) {
-            var name = td.getText();
-            var checkbox = td.findElement(By.cssSelector("#maintable input[type='checkbox']:first-child"));
-            //var checkbox = td.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withName(name));
-            //contacts.add(new ContactData().withName(name));
-        }
-        return contacts;
-    }*/
     public List<ContactData> getListContacts() {
         openContactsPage(By.linkText("home"));
         var contacts = new ArrayList<ContactData>();// пустой список для контактов
@@ -194,22 +177,6 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-
-    /*public List<ContactData> getListContacts() {
-        var contacts = new ArrayList<ContactData>();
-        var td = manager.driver.findElements(By.cssSelector("td.contact"));
-        for (var td : tds){
-            var name = td.getText();
-            var checkbox = td.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            contacts.add(new ContactData().withId(id).withName(name));
-        return contacts;
-    }*/
-
-
-
-
-
     private void returnToContactsPage() {
         manager.driver.findElement(By.linkText("home")).click();
     }
@@ -229,7 +196,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contact.firstname());
         type(By.name("lastname"), contact.lastname());
         type(By.name("mobile"), contact.phone());
-        attach(By.name("photo"),contact.photo());
+        attach(By.name("photo"), contact.photo());
 
     }
 
@@ -239,7 +206,6 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(locator).sendKeys(contact);
 
     }
-
 
 
     private void initContactModification(ContactData contact) {
@@ -253,4 +219,28 @@ public class ContactHelper extends HelperBase {
                 String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
 
     }
-}
+
+    public String getEmail(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[5]", contact.id()))).getText();
+
+    }
+
+    public String getAddress(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[4]", contact.id()))).getText();
+
+    }
+
+    public Map<String, String> getPhones() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = manager.driver.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getAttribute("id");
+            var phones = row.findElements(By.tagName("td")).get(6).getText();
+            result.put(id, phones);
+        }
+        return result;
+        }
+    }
+

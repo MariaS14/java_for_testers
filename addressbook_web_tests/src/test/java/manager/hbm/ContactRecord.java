@@ -26,19 +26,19 @@ public class ContactRecord {
     @Column(name = "deprecated")
     public Date deprecated = null;
 
-    public String address;
-    public String work;
-    public String home;
-    public String phone2;
-
+    public String address = "" ;
+    public String address2= "";
+    public String work = "";
+    public String home = "";
+    public String phone2 = "";
     public String email = "";
+    public String email2 = "";
+    public String email3 = "";
     public String middlename = "";
     public String nickname = "";
     public String company = "";
     public String title = "";
     public String fax = "";
-    public String email2 = "";
-    public String email3 = "";
     public String im = "";
     public String im2 = "";
     public String im3 = "";
@@ -49,7 +49,7 @@ public class ContactRecord {
     public int aday = 0;
     public String amonth = "";
     public String ayear = "";
-    public String address2 = "";
+
     public String notes = "";
 
 
