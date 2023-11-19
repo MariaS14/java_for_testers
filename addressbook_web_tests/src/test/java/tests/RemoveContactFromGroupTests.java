@@ -35,9 +35,12 @@ public class RemoveContactFromGroupTests extends TestBase {
                 return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
             };
             var expectedList = new ArrayList<>(oldRelated);
-            newRelated.sort(compareById);
+            expectedList.removeIf(c -> c.id().equals(testData.id()));
             expectedList.sort(compareById);
-            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+            Assertions.assertEquals(newRelated, expectedList);
+
+
+
         } else {
             app.contacts().addContactInGroup(testData, group);//добавление контакта в группу
             app.contacts().removeContactFromGroup(testData, group);
@@ -47,10 +50,9 @@ public class RemoveContactFromGroupTests extends TestBase {
                 return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
             };
             var expectedList = new ArrayList<>(oldRelated);
-            newRelated.sort(compareById);
+            expectedList.removeIf(c -> c.id().equals(testData.id()));
             expectedList.sort(compareById);
-            //ssertions.assertTrue(newRelated.equals(expectedList));
-            Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));
+            Assertions.assertEquals(newRelated, expectedList);
 
 
         }

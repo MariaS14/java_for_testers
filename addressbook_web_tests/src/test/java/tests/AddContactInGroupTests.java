@@ -33,7 +33,7 @@ public class AddContactInGroupTests extends TestBase {
         boolean contactAlreadyInGroup = oldRelated.contains(testData);
 
         if (!contactAlreadyInGroup) {
-            var contact = testData;
+            //var contact = testData;
             app.contacts().addContactInGroup(testData, group);
             var newRelated = app.hbm().getContactsInGroup(group);
             Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
@@ -41,7 +41,7 @@ public class AddContactInGroupTests extends TestBase {
                 return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
             };
             var expectedList = new ArrayList<>(oldRelated);
-            expectedList.add(contact.withId(newRelated.get(newRelated.size() - 1).id()).withFirstName(contact.firstname()).withLastName(contact.lastname()).withPhone(contact.phone()).withPhoto(""));
+            expectedList.add(testData.withId(newRelated.get(newRelated.size() - 1).id()).withFirstName(testData.firstname()).withLastName(testData.lastname()).withPhone(testData.phone()).withPhoto(""));
             expectedList.sort(compareById);
             Assertions.assertEquals(newRelated, expectedList);
 
@@ -53,7 +53,7 @@ public class AddContactInGroupTests extends TestBase {
                     .withPhone(CommonFunctions.randomString(10))
                     .withPhoto(randomFile("src/test/resources/images"));
             app.contacts().createContact(contact, group);//операция создания
-            app.contacts().addContactInGroup(testData, group);//добавили контакт в группу
+            app.contacts().addContactInGroup(contact, group);//добавили контакт в группу
             var newRelated = app.hbm().getContactsInGroup(group);
             Assertions.assertEquals(oldRelated.size()+1, newRelated.size());
             Comparator<ContactData> compareById = (o1, o2) -> {

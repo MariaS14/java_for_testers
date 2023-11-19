@@ -80,6 +80,7 @@ public class ContactHelper extends HelperBase {
 
     public void addContactInGroup(ContactData contact, GroupData group) {
         openContactsPage(By.linkText("home"));
+        selectFromListGroupNone(group);
         selectContact(contact);
         selectGroupFromList(group);
         manager.driver.findElement(By.name("add")).click();
@@ -105,6 +106,10 @@ public class ContactHelper extends HelperBase {
 
     private void selectFromListGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+
+    private void selectFromListGroupNone(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue("[none]");
     }
 
     private void selectContact(ContactData contact) {
