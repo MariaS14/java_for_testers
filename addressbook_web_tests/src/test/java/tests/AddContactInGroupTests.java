@@ -53,6 +53,7 @@ public class AddContactInGroupTests extends TestBase {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         var expectedList = new ArrayList<>(oldRelated);
+        expectedList.set(index, testData.withId(oldContacts.get(index).id()));
         newRelated.sort(compareById);
         expectedList.sort(compareById);
         Assertions.assertEquals(Set.copyOf(newRelated), Set.copyOf(expectedList));

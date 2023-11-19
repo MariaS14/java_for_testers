@@ -130,9 +130,6 @@ public class ContactHelper extends HelperBase {
     }
 
 
-
-
-
     public int getCountContact() {
         openContactsPage(By.linkText("home"));
         return manager.driver.findElements(By.name("entry")).size();
@@ -214,11 +211,9 @@ public class ContactHelper extends HelperBase {
         //manager.driver.findElement(By.cssSelector("[title='Edit']")).click();
     }
 
-    public String getPhones(ContactData contact) {
-        return manager.driver.findElement(By.xpath(
-                String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
 
-    }
+
+
 
     public String getEmail(ContactData contact) {
         return manager.driver.findElement(By.xpath(
@@ -231,13 +226,18 @@ public class ContactHelper extends HelperBase {
                 String.format("//input[@id='%s']/../../td[4]", contact.id()))).getText();
 
     }
+   /* public String getPhones(ContactData contact) {
+        return manager.driver.findElement(By.xpath(
+                String.format("//input[@id='%s']/../../td[6]", contact.id()))).getText();
 
-    public Map<String, String> getPhones() {
+    }*/
+
+   public Map<String, String> getPhones() {
         var result = new HashMap<String, String>();
         List<WebElement> rows = manager.driver.findElements(By.name("entry"));
         for (WebElement row : rows) {
             var id = row.findElement(By.tagName("input")).getAttribute("id");
-            var phones = row.findElements(By.tagName("td")).get(6).getText();
+            var phones = row.findElements(By.tagName("td")).get(5).getText();
             result.put(id, phones);
         }
         return result;
