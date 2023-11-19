@@ -12,6 +12,21 @@ public class ContactInfoTests extends TestBase {
 
     @Test
     void testPhones() {
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withPhone("604943")
+                    .withPhoto(randomFile("src/test/resources/images"))
+                    .withHome("3234")
+                    .withWork("555555")
+                    .withSecondary("22342")
+                    .withAddress("Address")
+                    .withAddress2("Address2")
+                    .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3"));
+        }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
             Stream.of(contact.home(), contact.phone(), contact.work(), contact.secondary())
@@ -28,9 +43,16 @@ public class ContactInfoTests extends TestBase {
             app.hbm().createContact(new ContactData()
                     .withFirstName(CommonFunctions.randomString(10))
                     .withLastName(CommonFunctions.randomString(10))
-                    .withPhone(CommonFunctions.randomString(10))
-                    .withEmail(CommonFunctions.randomString(10))
-                    .withPhoto(randomFile("src/test/resources/images")));
+                    .withPhone("604943")
+                    .withPhoto(randomFile("src/test/resources/images"))
+                    .withHome("3234")
+                    .withWork("555555")
+                    .withSecondary("22342")
+                    .withAddress("Address")
+                    .withAddress2("Address2")
+                    .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3"));
         }
         var contacts = app.hbm().getContactList();
         var contact = contacts.get(0);
@@ -45,6 +67,21 @@ public class ContactInfoTests extends TestBase {
 
     @Test
     void testAddress() {
+        if (app.hbm().getContactCount() == 0) {
+            app.hbm().createContact(new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withPhone("604943")
+                    .withPhoto(randomFile("src/test/resources/images"))
+                    .withHome("3234")
+                    .withWork("555555")
+                    .withSecondary("22342")
+                    .withAddress("Address")
+                    .withAddress2("Address2")
+                    .withEmail("email")
+                    .withEmail2("email2")
+                    .withEmail3("email3"));
+        }
         var contacts = app.hbm().getContactList();
         var contact = contacts.get(0);
         var addresses = app.contacts().getAddress(contact);
