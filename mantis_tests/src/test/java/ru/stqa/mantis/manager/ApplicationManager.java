@@ -14,7 +14,7 @@ import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultServic
 
 public class ApplicationManager {
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     private String string;
     private String browser;
@@ -22,7 +22,10 @@ public class ApplicationManager {
     private SessionHelper sessionHelper;
     private HttpSessionHelper httpSessionHelper;
     private JamesCliHelper jamesCliHelper;
+
+    private RegistrationHelper registrationHelper;
     private MailHelper mailHelper;
+    private JamesApiHelper jamesApiHelper;
 
     public void init(String browser, Properties properties) {
         this.string = browser;
@@ -63,6 +66,13 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
     public HttpSessionHelper http() {
         if (httpSessionHelper == null) {
             httpSessionHelper = new HttpSessionHelper(this);
@@ -75,6 +85,13 @@ public class ApplicationManager {
             jamesCliHelper = new JamesCliHelper(this);
         }
         return jamesCliHelper;
+    }
+
+    public JamesApiHelper jamesApiHelper() {
+        if (jamesApiHelper == null) {
+            jamesApiHelper = new JamesApiHelper(this);
+        }
+        return jamesApiHelper;
     }
 
     public MailHelper mail() {

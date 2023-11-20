@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.mantis.tests.MailTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-20T06:00:26" hostname="DESKTOP-23VK9RO" time="0.139">
-  <properties/>
-  <testcase name="canExtractUrl()" classname="ru.stqa.mantis.tests.MailTests" time="0.139"/>
-  <system-out><![CDATA[http://localhost/mantisbt-2.26.0/verify.php?id=3&confirm_hash=SVc0ApxMjHtRfAirlZs-1aJTR09ucPWvoCIlQPcsgaJavlWpH2nesUBiPMec5NBJudxrUrYrmwqaX4IzhiCA
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

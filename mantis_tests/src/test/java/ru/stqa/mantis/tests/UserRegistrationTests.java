@@ -1,19 +1,82 @@
 package ru.stqa.mantis.tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import ru.stqa.mantis.common.CommonFunctions;
+import ru.stqa.mantis.manager.ApplicationManager;
 
-public class UserRegistrationTests extends TestBase{
+import java.io.FileReader;
+import java.time.Duration;
+import java.util.Properties;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
-    @Test
+public class UserRegistrationTests extends TestBase {
 
-    void canRegisterUser(String username){
-        var email = String.format("%s@localhost",username);
-        //создать пользователя (адрес) на почтовом сервере(JamesHelper)
-        //ткрываем браузер и заполняем форму создания и отправляем(бразуер)
-        //ждем почту(MailHelper)
-        //извлекаем ссылку из письма
-        //возвращаемся в бразуер, проходим по ссылке и завершаем регистрацию пользователя(бразуер)
-        //проверяем, что пользователь может залогиниться
-        //оздать класс помошник где будут совершаться действия в бразуерах(HttpSessionHelper)
+    public static Stream<String> randomUserProvider() {
+        Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
+        return Stream.generate(randomUser).limit(2);
+    }
+
+    @ParameterizedTest
+    @MethodSource("randomUserProvider")
+    void canRegisterUser(String username) {
+        var email = String.format("%s@localhost", username);
+        var password = "password";
+        app.jamesCli().addUser(email, password);
+        app.registration().initRegistration(username, email);
+        var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
+        var url = CommonFunctions.extractUrl(message);
+        app.mail().drain(email, password);
+        app.registration().completeRegistration(url, username, password);
+        app.http().login(username, password);
+        Assertions.assertTrue(app.http().isLoggedIn());
     }
 }
+
+
+
+
+
+
+    //создать пользователя (адрес) на почтовом сервере(JamesHelper)
+    /*    app.jamesCli().addUser(email,password);
+
+
+        //Открываем браузер и заполняем форму создания и отправляем(бразуер)
+        app.driver.get("http://localhost/mantisbt-2.26.0/login_page.php");
+        app.driver.manage().window().setSize(new Dimension(1184, 784));
+        app.driver.findElement(By.linkText("Signup for a new account")).click();
+        app.driver.findElement(By.id("email-field")).click();
+        app.driver.findElement(By.cssSelector("fieldset")).click();
+        app.driver.findElement(By.id("email-field")).sendKeys("pmgtusbm@localhost");
+        app.driver.findElement(By.id("username")).click();
+        app.driver.findElement(By.id("username")).sendKeys("pmgtusbm");
+        app.driver.findElement(By.cssSelector(".width-40")).click();
+
+
+        //ждем почту(MailHelper)
+
+
+        var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
+        Assertions.assertEquals(1, messages.size());
+        System.out.println(messages);
+        //извлекаем ссылку из письма
+        app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
+        var text = messages.get(0).content();
+        var pattern = Pattern.compile("http://\\S*");
+        var matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            var url = text.substring(matcher.start(), matcher.end());
+            System.out.println(url);
+        }
+        app.http().login("user1", "password");
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+}
+*/
