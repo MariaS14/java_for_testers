@@ -1,0 +1,12 @@
+•[MailMessage[from=Mantis Bug Tracker <noreply@example.com>, content=The user administrator has created an account for you with username "user1". In
+Oorder to complete your registration, visit the following URL (make sure it is
+?entered as the single line) and set your own access password:
+
+”http://localhost/mantisbt-2.26.0/verify.php?id=2&confirm_hash=coiPZWnHC63CimmTol-9rjKdzgchQQmpfNjeR5_ocquyOZfM0lGONejLRx8E6sehvDteUurY5MKGiUV2a3zC
+
+OIf you did not request any registration, ignore this message and nothing will
+	happen.
+
+Do not reply to this message
+
+]]
