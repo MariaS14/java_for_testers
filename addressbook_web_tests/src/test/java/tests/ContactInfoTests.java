@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 public class ContactInfoTests extends TestBase {
 
     @Test
-    void testPhones() {
+    void testPhonesEmailsAdresses() {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData()
                     .withFirstName(CommonFunctions.randomString(10))
@@ -29,43 +29,47 @@ public class ContactInfoTests extends TestBase {
         }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
-            Stream.of(contact.home(), contact.phone(), contact.work(), contact.secondary())
-                    .filter(s -> s != null && !"".equals(s))
-                    .collect(Collectors.joining("\n"))
+                Stream.of(contact.home(), contact.phone(), contact.work(), contact.secondary())
+                        .filter(s -> s != null && !"".equals(s))
+                        .collect(Collectors.joining("\n"))
         ));
         var phones = app.contacts().getPhones();
-        Assertions.assertEquals(expected,phones);
+        Assertions.assertEquals(expected, phones);
 
-        }
-    @Test
-    void testEmail() {
-        if (app.hbm().getContactCount() == 0) {
-            app.hbm().createContact(new ContactData()
-                    .withFirstName(CommonFunctions.randomString(10))
-                    .withLastName(CommonFunctions.randomString(10))
-                    .withPhone("604943")
-                    .withPhoto(randomFile("src/test/resources/images"))
-                    .withHome("3234")
-                    .withWork("555555")
-                    .withSecondary("22342")
-                    .withAddress("Address")
-                    .withAddress2("Address2")
-                    .withEmail("email")
-                    .withEmail2("email2")
-                    .withEmail3("email3"));
-        }
-        var contacts = app.hbm().getContactList();
         var contact = contacts.get(0);
         var emails = app.contacts().getEmail(contact);
-        var expected = Stream.of(contact.email(), contact.email2(), contact.email3())
+        var expected1 = Stream.of(contact.email(), contact.email2(), contact.email3())
                 .filter(s -> s != null && !"".equals(s))
                 .collect(Collectors.joining("\n"));
-        Assertions.assertEquals(expected, emails);
-    }//тест только для одного первого попавшегося контакта
+        Assertions.assertEquals(expected1, emails);
+
+
+        var addresses = app.contacts().getAddress(contact);
+        var expected2 = Stream.of(contact.address(), contact.address2())
+                .filter(s -> s != null && !"".equals(s))
+                .collect(Collectors.joining("\n"));
+        Assertions.assertEquals(expected2, addresses);
+    }
+}
 
 
 
-    @Test
+
+
+        /*var phones = app.contacts().getPhones(contact);
+        expected = Stream.of(contact.home(), contact.mobile(), contact.work())
+                .filter(s -> s != null && !"".equals(s))
+                .collect(Collectors.joining("\n"));
+        Assertions.assertEquals(expected, phones);*/
+
+
+
+
+
+
+
+
+    /*@Test
     void testAddress() {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData()
@@ -102,4 +106,4 @@ public class ContactInfoTests extends TestBase {
                 .collect(Collectors.joining("\n"));
         Assertions.assertEquals(expected, phones);
     }//тест только для одного первого попавшегося контакта*/
-}
+

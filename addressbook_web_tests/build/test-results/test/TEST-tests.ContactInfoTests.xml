@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.ContactInfoTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-21T07:18:33" hostname="DESKTOP-23VK9RO" time="5.973">
+  <properties/>
+  <testcase name="testPhonesEmailsAdresses()" classname="tests.ContactInfoTests" time="5.973"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[нояб. 21, 2023 10:18:37 AM org.hibernate.Version logVersion
+INFO: HHH000412: Hibernate ORM core version 6.3.0.CR1
+нояб. 21, 2023 10:18:37 AM org.hibernate.cfg.Environment <clinit>
+INFO: HHH000406: Using bytecode reflection optimizer
+нояб. 21, 2023 10:18:37 AM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+INFO: HHH000026: Second-level cache disabled
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull]
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001001: Connection properties: {password=****, user=root}
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001003: Autocommit mode: false
+нояб. 21, 2023 10:18:37 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+INFO: HHH10001115: Connection pool size: 20 (min=1)
+нояб. 21, 2023 10:18:37 AM org.hibernate.dialect.Dialect checkVersion
+WARN: HHH000511: The 5.5.0 version for [org.hibernate.dialect.MySQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 5.7.0. Check the community dialects project for available legacy versions.
+нояб. 21, 2023 10:18:39 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+]]></system-err>
+</testsuite>
