@@ -41,13 +41,13 @@ public class ApplicationManager {
                 service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
                 service.build();
                 driver = new FirefoxDriver(service.build());
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
             } else if ("chrome".equals(browser)) {
                 var service = createDefaultService();
                 service.setExecutable("c:/windows/system32/chromedriver.exe");
                 driver = new ChromeDriver(service);
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }

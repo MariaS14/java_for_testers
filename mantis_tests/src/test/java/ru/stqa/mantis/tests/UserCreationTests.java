@@ -1,4 +1,4 @@
-/*package ru.stqa.mantis.tests;
+package ru.stqa.mantis.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,7 @@ public class UserCreationTests extends TestBase {
         Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
         return Stream.generate(randomUser).limit(2);
     }
+
     @ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
@@ -40,9 +41,10 @@ public class UserCreationTests extends TestBase {
         app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());
     }
+}
 
 //альтернативный помощник, который действует через удаленный программный интерфейс
-    @ParameterizedTest
+   /*@ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
         var email = String.format("%s@localhost", username);

@@ -1,48 +1,2 @@
-ÞError connecting to remote JMX agent : Failed to retrieve RMIServer stub: javax.naming.ServiceUnavailableException [Root exception is java.rmi.ConnectException: Connection refused to host: 127.0.0.1; nested exception is: 
-:	java.net.ConnectException: Connection refused: connect]
-Cusage: java org.apache.james.cli.ServerCmd --host <arg> <command>
-; -h,--host <arg>              node hostname or ip address
-< -p,--port <arg>              remote jmx agent port number
-3 -password,--password <arg>   remote jmx password
-3 -username,--username <arg>   remote jmx username
-AddUser <username> <password>
-RemoveUser <username>
-ListUsers
-AddDomain <domainName>
-RemoveDomain <domainName>
-ContainsDomain <domainName>
-ListDomains
-ListMappings
-(ListUserDomainMappings <user> <domain>
-7AddAddressMapping <fromUser> <fromDomain> <toAddress>
-:RemoveAddressMapping <fromUser> <fromDomain> <toAddress>
-)AddRegexMapping <user> <domain> <regex>
-,RemoveRegexMapping <user> <domain> <regex>
-#SetPassword <username> <password>
-!CopyMailbox <srcBean> <dstBean>
-DeleteUserMailboxes <user>
-)CreateMailbox <namespace> <user> <name>
-ListUserMailboxes <user>
-)DeleteMailbox <namespace> <user> <name>
-,ImportEml <namespace> <user> <name> <path>
-GetStorageQuota <quotaroot>
-"GetMessageCountQuota <quotaroot>
-(GetQuotaroot <namespace> <user> <name>
- GetMaxStorageQuota <quotaroot>
-%GetMaxMessageCountQuota <quotaroot>
-2SetMaxStorageQuota <quotaroot> <maxMessageCount>
-2SetMaxMessageCountQuota <quotaroot> <maxStorage>
-'SetGlobalMaxStorageQuota <maxStorage>
-1SetGlobalMaxMessageCountQuota <maxMessageCount>
-GetGlobalMaxStorageQuota
-GetGlobalMaxMessageCountQuota
-*ReindexMailbox <namespace> <user> <name>
-ReindexAll
-GetSieveQuota
-SetSieveQuota <quota>
-RemoveSieveQuota
-GetSieveUserQuota <username>
-&SetSieveUserQuota <username> <quota>
-!RemoveSieveUserQuota <username>
-5AddActiveSieveScript <username> <scriptname> <path>
+1AddUser command executed sucessfully in 328 ms.
 

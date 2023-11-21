@@ -21,6 +21,7 @@ public class SessionHelper extends HelperBase {
     }
 
     public void signup(String username, String email) {
+
         click(By.xpath("//*[@id='login-box']/div/div[2]/a"));
         type(By.name("username"), username);
         type(By.name("email"), email);
