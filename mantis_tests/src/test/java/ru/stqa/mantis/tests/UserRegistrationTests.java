@@ -18,26 +18,36 @@ import java.util.stream.Stream;
 
 public class UserRegistrationTests extends TestBase {
 
-    public static Stream<String> randomUserProvider() {
-        Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
-        return Stream.generate(randomUser).limit(2);
-    }
 
-    @ParameterizedTest
-    @MethodSource("randomUserProvider")
-    void canRegisterUser(String username) {
+    @Test
+    void canRegisterUser() {
+        //var url = "";
+        var username = String.format(CommonFunctions.randomString(6));
         var email = String.format("%s@localhost", username);
-        var password = "password";
-        app.jamesCli().addUser(email, password);
-        app.registration().initRegistration(username, email);
-        var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
-        var url = CommonFunctions.extractUrl(message);
-        app.mail().drain(email, password);
-        app.registration().completeRegistration(url, username, password);
-        app.http().login(username, password);
+
+        app.jamesCli().addUser(email, "password");
+        app.session().signup( username, email);
+
+        var messages = app.mail().receive(email, "password", Duration.ofSeconds(10));
+        var text = messages.get(0).content();
+        var pattern = Pattern.compile("http://\\S*");
+        var matcher = pattern.matcher(text);
+
+        var url = "";
+        if (matcher.find()) {
+            url = text.substring(matcher.start(), matcher.end());
+            System.out.println(url);
+        }
+        app.session().finishedRegistration(url, username, "password");
+
+        Assertions.assertTrue(app.session().isLoggedIn());
+
+        app.http().login(username, "password");
         Assertions.assertTrue(app.http().isLoggedIn());
+
     }
 }
+
 
 
 
@@ -61,9 +71,28 @@ public class UserRegistrationTests extends TestBase {
 
 
         //ждем почту(MailHelper)
+    /* public static Stream<String> randomUserProvider() {
+        Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
+        return Stream.generate(randomUser).limit(2);
+    }*/
 
+    /* @ParameterizedTest
+    @MethodSource("randomUserProvider")
+    void canRegisterUser(String username) {
+        var email = String.format("%s@localhost", username);
+        var password = "password";
+        app.jamesCli().addUser(email, password);
+        app.registration().initRegistration(username, email);
+        var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
+        var url = CommonFunctions.extractUrl(message);
+        app.mail().drain(email, password);
+        app.registration().completeRegistration(url, username, password);
+        app.http().login(username, password);
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+}*/
 
-        var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
+        /*var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
         Assertions.assertEquals(1, messages.size());
         System.out.println(messages);
         //извлекаем ссылку из письма

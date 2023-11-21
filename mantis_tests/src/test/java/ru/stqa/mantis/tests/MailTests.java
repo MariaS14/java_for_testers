@@ -14,14 +14,14 @@ public class MailTests extends TestBase {
     }
 
     @Test
-    void canReceiveEmail() {
+    void canReceiveEmail() throws InterruptedException {
         var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
         Assertions.assertEquals(1,messages.size());
         System.out.println(messages);
     }
 
     @Test
-    void canExtractUrl() {
+    void canExtractUrl() throws InterruptedException {
         var messages = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(60));
         var text = messages.get(0).content();
         var pattern = Pattern.compile("http://\\S*");

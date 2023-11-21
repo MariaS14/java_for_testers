@@ -1,18 +1,18 @@
-package ru.stqa.mantis.manager;
+/*package ru.stqa.mantis.manager;
 
 
-public class JamesApiHelper extends HelperBase{
+//public class JamesApiHelper extends HelperBase{
 
-    OkHttpClient client;
+   // OkHttpClient client;
 
     public JamesApiHelper(ApplicationManager manager) {
 
         super(manager);
         client = new OkHttpClient.Builder().cookieJar(new JavaNetCookieJar(new CookieManager())).build();
 
-    }
+    }*/
 
-    public void addUser(String email, String password){
+    /*public void addUser(String email, String password){
         public static final MediaType JSON = MediaType.get("application/json");
 
 
@@ -37,4 +37,4 @@ public class JamesApiHelper extends HelperBase{
         }
 
     }
-}
+}*/

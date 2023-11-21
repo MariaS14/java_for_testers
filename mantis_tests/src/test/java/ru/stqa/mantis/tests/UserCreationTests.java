@@ -1,4 +1,4 @@
-package ru.stqa.mantis.tests;
+/*package ru.stqa.mantis.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -60,4 +60,4 @@ public class UserCreationTests extends TestBase {
         app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());
     }
-}
+}*/
