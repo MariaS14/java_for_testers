@@ -3,18 +3,57 @@ package tests;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.addressbook.common.CommonFunctions;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class AddContactInGroupTests extends TestBase {
-    @Test
+
+
+        public static List<ContactData> RandomContact() {
+            return List.of(new ContactData()
+                    .withFirstName(CommonFunctions.randomString(10))
+                    .withLastName(CommonFunctions.randomString(10))
+                    .withPhone(CommonFunctions.randomString(10)));
+                    //.withPhoto(randomFile("src/test/resources/images")));
+        }
+
+        @ParameterizedTest
+        @MethodSource("RandomContact")
+        public void canAddContactInGroup(ContactData contact) {
+            if (app.hbm().getGroupCount() == 0) {
+                app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+            }
+            var groupList = app.hbm().getGroupList();
+            ContactData contactForAddToGroup = null;
+            GroupData groupData = groupList.get(0);
+            var oldRelated = app.hbm().getContactsInGroup(groupData);
+
+
+            var contactListNotInGroup = app.hbm().getContactsNotInGroup();
+            if  ( (contactListNotInGroup != null) && (!contactListNotInGroup.isEmpty()) ) {
+                contactForAddToGroup = contactListNotInGroup.get(0);
+                app.contacts().addContactInGroup(contactForAddToGroup, groupData);
+            }
+            if (contactForAddToGroup == null) {
+                app.contacts().createContact(contact);
+                contact = contact.withId(app.hbm().getIdContactByName(contact.firstname()));
+                app.contacts().addContactInGroup(contact, groupData);
+                contactForAddToGroup = contact;
+            }
+
+            var expectedContactListInGroup = app.hbm().getContactsInGroup(groupData);
+            var newRelated = new ArrayList<>(oldRelated);
+            newRelated.add(contactForAddToGroup);
+
+            Assertions.assertEquals(Set.copyOf(expectedContactListInGroup), Set.copyOf(newRelated));
+        }
+
+    }
+
+   /* @Test
     public void canAddContactInGroup() {
 
         if (app.hbm().getContactCount() == 0) {
@@ -67,7 +106,7 @@ public class AddContactInGroupTests extends TestBase {
         }
 
     }
-}
+}*/
         /*
 
         //var expectedList = new ArrayList<>(oldRelated);

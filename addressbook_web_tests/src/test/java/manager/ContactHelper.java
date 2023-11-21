@@ -95,16 +95,17 @@ public class ContactHelper extends HelperBase {
         dropdown.findElement(By.xpath("//option[. = '[all]']")).click();
     }
 
-    public void removeContactFromGroup(ContactData contact, GroupData group) {
+    public void removeContactFromGroup(ContactData contactRemoveFromGroup, GroupData group) {
         openContactsPage(By.linkText("home"));
         selectFromListGroup(group);
-        selectContact(contact);
+        selectContact(contactRemoveFromGroup);
         manager.driver.findElement(By.name("remove")).click();
         returnToContactsPage();
     }
 
 
-    private void selectFromListGroup(GroupData group) {
+    public void selectFromListGroup(GroupData group) {
+        openContactsPage(By.linkText("home"));
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
 
@@ -120,6 +121,8 @@ public class ContactHelper extends HelperBase {
     private void selectGroupFromList(GroupData group) {
         new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
     }
+
+
 
     private void selectGroupForContact() {
         manager.driver.findElement(By.cssSelector("select[name='to_group']")).click();

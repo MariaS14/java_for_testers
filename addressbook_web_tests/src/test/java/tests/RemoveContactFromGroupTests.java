@@ -3,15 +3,77 @@ package tests;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import ru.stqa.addressbook.common.CommonFunctions;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class RemoveContactFromGroupTests extends TestBase {
-    @Test
+
+
+
+
+
+
+
+    public static List<ContactData> RandomContact() {
+        return List.of(new ContactData()
+                .withFirstName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhone(CommonFunctions.randomString(10)));
+        //.withPhoto(randomFile("src/test/resources/images")));
+    }
+
+    @ParameterizedTest
+    @MethodSource("RandomContact")
+    void canContactRemoveFromGroup(ContactData contact) {
+
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var groupList = app.hbm().getGroupList();
+
+        ContactData contactRemoveFromGroup = null;
+        GroupData groupData = null;
+        for (int i = 0; i < groupList.size() - 1; i++) {
+            var contactListInGroup = app.hbm().getContactsInGroup(groupList.get(i));
+            if  ( (contactListInGroup != null) && (!contactListInGroup.isEmpty()) ) {
+                contactRemoveFromGroup = contactListInGroup.get(0); //В группе нашелся контакт
+                groupData = groupList.get(i);
+                break;
+            }
+        }
+
+        if (contactRemoveFromGroup == null) {
+            var contactListNotInGroup = app.hbm().getContactsNotInGroup();
+            if  ( (contactListNotInGroup != null) && (!contactListNotInGroup.isEmpty()) ) {
+                contactRemoveFromGroup = contactListNotInGroup.get(0); // В полученном с БД списке найден контакт без группы
+                groupData = groupList.get(0);
+                app.contacts().addContactInGroup(contactRemoveFromGroup, groupData); // Контакт добавляется в группу
+            }
+        }
+        if (contactRemoveFromGroup == null) {
+            app.contacts().createContact(contact);
+            contact = contact.withId(app.hbm().getIdContactByName(contact.firstname()));
+            groupData = groupList.get(0);
+            app.contacts().addContactInGroup(contact, groupData);
+            contactRemoveFromGroup = contact;
+        }
+        var oldContacts = app.hbm().getContactsInGroup(groupData);
+        app.contacts().selectFromListGroup(groupData);
+        app.contacts().removeContactFromGroup(contactRemoveFromGroup, groupData);
+        var newContacts = app.hbm().getContactsInGroup(groupData);
+        var expectedList = new ArrayList<>(oldContacts);
+        ContactData newRelated = contactRemoveFromGroup;
+        expectedList.removeIf(contactData -> newRelated.id().equals(contactData.id()));
+        Assertions.assertEquals(Set.copyOf(expectedList), Set.copyOf(newContacts));
+    }
+
+
+}
+
+    /*@Test
     public void canRemoveContactFromGroup() {
         if (app.hbm().getContactCount() == 0) {
             app.hbm().createContact(new ContactData("", "contact name", "contact lastname", "contact phone", "","","","","","","","",""));
@@ -57,6 +119,6 @@ public class RemoveContactFromGroupTests extends TestBase {
 
         }
     }
-}
+}*/
 
 

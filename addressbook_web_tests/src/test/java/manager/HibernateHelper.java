@@ -138,7 +138,27 @@ public class HibernateHelper extends HelperBase {
 
         });
     }
+    public List<GroupData> getGroupsByContact(ContactData contactData) {
+        return sessionFactory.fromSession(session -> {
+            return convertList(session.get(ContactRecord.class, contactData.id()).group);
+        });
+    }
+
+    public List<ContactData> getContactsNotInGroup() {
+        var allContacts = getContactList();
+        allContacts.removeIf(contactData -> {
+            var groups = getGroupsByContact(contactData);
+            return (groups != null) && (!groups.isEmpty());
+        });
+        return allContacts;
 }
+    public String getIdContactByName(String firstname) {
+        return sessionFactory.fromSession(session -> {
+            return session.createQuery(String.format("select id from ContactRecord where firstname='%s'", firstname), Integer.class).getSingleResult().toString();
+        });
+    }
+}
+
 
 //метод session.get получение объекта по идентификатору.GroupRecord - объект, идентификатор - group.Id
 
