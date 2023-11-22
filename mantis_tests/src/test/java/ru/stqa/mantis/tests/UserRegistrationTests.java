@@ -2,19 +2,11 @@ package ru.stqa.mantis.tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import ru.stqa.mantis.common.CommonFunctions;
-import ru.stqa.mantis.manager.ApplicationManager;
 
-import java.io.FileReader;
+
 import java.time.Duration;
-import java.util.Properties;
-import java.util.function.Supplier;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class UserRegistrationTests extends TestBase {
 

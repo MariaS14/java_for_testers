@@ -23,7 +23,7 @@ public class ApplicationManager {
     private HttpSessionHelper httpSessionHelper;
     private DeveloperMailHelper developerMailHelper;
     private JamesCliHelper jamesCliHelper;
-    //private UserHelper userHelper;
+    private UserHelper userHelper;
 
 
     private RegistrationHelper registrationHelper;
@@ -106,12 +106,12 @@ public JamesApiHelper jamesApiHelper() {
         return mailHelper;
     }
 
-   /*public UserHelper user(){
+   public UserHelper user(){
         if (userHelper == null) {
             userHelper = new UserHelper(this);
         }
         return userHelper;
-    }*/
+    }
 
     public DeveloperMailHelper developerMail(){
         if (developerMailHelper == null) {

@@ -19,29 +19,30 @@ import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+
 public class UserCreationTests extends TestBase {
 
     DeveloperMailUser user;
 
     @Test
     void canCreateUser() {
+        var email = String.format("%s@developermail.com", user.name());
         var password = "password";
         user = app.developerMail().addUser();
-        var email = String.format("%s@developermail.com", user.name());
+
+
+        app.user().startCreation(user.name(), email);
+
+        var message = app.developerMail().receive(user, Duration.ofSeconds(10));
+        var url = CommonFunctions.extractUrl(message);
+
+       //app.mail().drain(email, password);
+        app.registration().completeRegistration(url, user.name(), password);
+
+        app.http().login(user.name(), password);
+        Assertions.assertTrue(app.http().isLoggedIn());
     }
 
-
-   app.registration().initRegistration(username, email);
-
-    var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
-    var url = CommonFunctions.extractUrl(message);
-
-    app.mail().drain(email, password);
-    app.registration().completeRegistration(url, username, password);
-
-    app.http().login(username, password);
-    Assertions.assertTrue(app.http().isLoggedIn());
-}
     @AfterEach
     void deleteMailUser() {
         app.developerMail().deleteUser(user);
@@ -51,7 +52,7 @@ public class UserCreationTests extends TestBase {
 //}
 
 
-    //альтернативный помощник, который действует через удаленный программный интерфейс
+//альтернативный помощник, который действует через удаленный программный интерфейс
   /*@ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
