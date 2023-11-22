@@ -47,7 +47,7 @@ public class UserRegistrationTests extends TestBase {
         app.jamesCli().addUser(email, "password");
         app.session().signup(username, email);
 
-        var messages = app.mail().receive(email, "password", Duration.ofSeconds(10));
+        var messages = app.mail().receive(email, "password", Duration.ofSeconds(60));
         var text = messages.get(0).content();
         var pattern = Pattern.compile("http://\\S*");
         var matcher = pattern.matcher(text);

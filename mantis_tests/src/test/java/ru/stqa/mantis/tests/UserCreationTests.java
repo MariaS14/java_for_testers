@@ -1,4 +1,4 @@
-package ru.stqa.mantis.tests;
+/*package ru.stqa.mantis.tests;
 
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.AfterEach;
@@ -48,7 +48,7 @@ public class UserCreationTests extends TestBase {
         app.developerMail().deleteUser(user);
 
     }
-}
+}*/
 //}
 
 

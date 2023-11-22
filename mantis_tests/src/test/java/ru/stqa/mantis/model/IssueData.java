@@ -1,4 +1,4 @@
-package ru.stqa.mantis.model;
+/*package ru.stqa.mantis.model;
 
 public record IssueData {
-}
+}*/

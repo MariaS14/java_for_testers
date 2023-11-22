@@ -14,48 +14,47 @@ import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultServic
 
 public class ApplicationManager {
 
-    public WebDriver driver;
-
     private String string;
-    private String browser;
     private Properties properties;
     private SessionHelper sessionHelper;
     private HttpSessionHelper httpSessionHelper;
-    private DeveloperMailHelper developerMailHelper;
     private JamesCliHelper jamesCliHelper;
-    private UserHelper userHelper;
-
-
-    private RegistrationHelper registrationHelper;
     private MailHelper mailHelper;
-     private JamesApiHelper jamesApiHelper;
+    private RegistrationHelper registrationHelper;
+    private JamesApiHelper jamesApiHelper;
+    //private LoginHelper loginSession;
+    private DeveloperMailHelper developerMailHelper;
+    //private RestApiHelper restApiHelper;
 
-    public ApplicationManager() {
-    }
+
+    private WebDriver driver;
+
+
 
     public void init(String browser, Properties properties) {
-        this.string = browser;
         this.properties = properties;
-
+        this.string = browser;
     }
 
 
-    public WebDriver driver() {
-        if (driver == null) {
-            if ("firefox".equals(browser)) {
+
+
+    public WebDriver driver(){
+        if(driver==null){
+            if ("firefox".equals(string)) {
                 var service = new GeckoDriverService.Builder();
                 service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
                 service.build();
                 driver = new FirefoxDriver(service.build());
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-            } else if ("chrome".equals(browser)) {
+            } else if ("chrome".equals(string)) {
                 var service = createDefaultService();
                 service.setExecutable("c:/windows/system32/chromedriver.exe");
                 driver = new ChromeDriver(service);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
             } else {
-                throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
+                throw new IllegalArgumentException(String.format("Unknown browser %s", string));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get(properties.getProperty("web.baseUrl"));
@@ -106,12 +105,12 @@ public JamesApiHelper jamesApiHelper() {
         return mailHelper;
     }
 
-   public UserHelper user(){
+   /*public UserHelper user(){
         if (userHelper == null) {
             userHelper = new UserHelper(this);
         }
         return userHelper;
-    }
+    }*/
 
     public DeveloperMailHelper developerMail(){
         if (developerMailHelper == null) {

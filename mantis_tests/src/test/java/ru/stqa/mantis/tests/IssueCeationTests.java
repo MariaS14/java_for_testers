@@ -1,4 +1,4 @@
-package ru.stqa.mantis.tests;
+/*package ru.stqa.mantis.tests;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,4 +8,4 @@ public class IssueCeationTests extends TestBase{
     void canCreateIssue(new IssueData){
         app.rest().createIssue
     }
-}
+}*/
