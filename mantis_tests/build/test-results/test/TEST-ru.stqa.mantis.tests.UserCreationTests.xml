@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.mantis.tests.UserCreationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-22T04:49:59" hostname="DESKTOP-23VK9RO" time="3.883">
+  <properties/>
+  <testcase name="canCreateUser()" classname="ru.stqa.mantis.tests.UserCreationTests" time="3.883"/>
+  <system-out><![CDATA[{"success":true,"errors":null,"result":true}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

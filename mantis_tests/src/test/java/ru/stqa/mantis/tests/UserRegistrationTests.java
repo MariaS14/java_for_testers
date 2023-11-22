@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 public class UserRegistrationTests extends TestBase {
 
 
-    @Test
+    /*@Test
     void canRegisterUser() {
         //var url = "";
         var username = String.format(CommonFunctions.randomString(6));
@@ -46,9 +46,34 @@ public class UserRegistrationTests extends TestBase {
         Assertions.assertTrue(app.http().isLoggedIn());
 
     }
+}*/
+    @Test
+    void canRegisterUser() throws InterruptedException {
+        var username = String.format(CommonFunctions.randomString(6));
+        var email = String.format("%s@localhost", username);
+
+        app.jamesCli().addUser(email, "password");
+        app.session().signup(username, email);
+
+        var messages = app.mail().receive(email, "password", Duration.ofSeconds(10));
+        var text = messages.get(0).content();
+        var pattern = Pattern.compile("http://\\S*");
+        var matcher = pattern.matcher(text);
+
+        var url = "";
+        if (matcher.find()) {
+            url = text.substring(matcher.start(), matcher.end());
+            System.out.println(url);
+        }
+        app.session().finishedRegistration(url, username, "password");
+
+        Assertions.assertTrue(app.session().isLoggedIn());
+
+        app.http().login(username, "password");
+        Assertions.assertTrue(app.http().isLoggedIn());
+
+    }
 }
-
-
 
 
 

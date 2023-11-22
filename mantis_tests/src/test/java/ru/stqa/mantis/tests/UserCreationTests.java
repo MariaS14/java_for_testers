@@ -1,5 +1,7 @@
 package ru.stqa.mantis.tests;
 
+import org.checkerframework.checker.units.qual.A;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import ru.stqa.mantis.common.CommonFunctions;
 import ru.stqa.mantis.manager.ApplicationManager;
+import ru.stqa.mantis.model.DeveloperMailUser;
 
 import java.io.FileReader;
 import java.time.Duration;
@@ -18,33 +21,38 @@ import java.util.stream.Stream;
 
 public class UserCreationTests extends TestBase {
 
-    public static Stream<String> randomUserProvider() {
-        Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
-        return Stream.generate(randomUser).limit(2);
+    DeveloperMailUser user;
+
+    @Test
+    void canCreateUser() {
+        var password = "password";
+        user = app.developerMail().addUser();
+        var email = String.format("%s@developermail.com", user.name());
     }
 
-    @ParameterizedTest
-    @MethodSource("randomUserProvider")
-    void canCreateUser(String username) {
-        var email = String.format("%s@localhost", username);
-        var password = "password";
-        app.jamesCli().addUser(email, password);
 
-        app.registration().initRegistration(username, email);
+   app.registration().initRegistration(username, email);
 
-        var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
-        var url = CommonFunctions.extractUrl(message);
+    var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
+    var url = CommonFunctions.extractUrl(message);
 
-        app.mail().drain(email, password);
-        app.registration().completeRegistration(url, username, password);
+    app.mail().drain(email, password);
+    app.registration().completeRegistration(url, username, password);
 
-        app.http().login(username, password);
-        Assertions.assertTrue(app.http().isLoggedIn());
+    app.http().login(username, password);
+    Assertions.assertTrue(app.http().isLoggedIn());
+}
+    @AfterEach
+    void deleteMailUser() {
+        app.developerMail().deleteUser(user);
+
     }
 }
+//}
 
-//альтернативный помощник, который действует через удаленный программный интерфейс
-   /*@ParameterizedTest
+
+    //альтернативный помощник, который действует через удаленный программный интерфейс
+  /*@ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
         var email = String.format("%s@localhost", username);
@@ -62,4 +70,29 @@ public class UserCreationTests extends TestBase {
         app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());
     }
+
+    public static Stream<String> randomUserProvider() {
+        Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
+        return Stream.generate(randomUser).limit(10);
+    }
+
+    @ParameterizedTest
+    @MethodSource("randomUserProvider")
+    void canCreateUser(String username) {
+        var email = String.format("%s@localhost", username);
+        var password = "password";
+        app.jamesApiHelper().addUser(email, password);
+
+        app.registration().initRegistration(username, email);
+
+        var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
+        var url = CommonFunctions.extractUrl(message);
+
+        app.mail().drain(email, password);
+        app.registration().completeRegistration(url, username, password);
+
+        app.http().login(username, password);
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+}
 }*/
