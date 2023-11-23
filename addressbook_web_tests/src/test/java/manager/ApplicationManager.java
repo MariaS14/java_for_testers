@@ -16,6 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
 
@@ -35,43 +36,32 @@ public class ApplicationManager {
 
     public void init(String browser, Properties properties) throws MalformedURLException {
         this.properties = properties;
+        System.setProperty("webdriver.chrome.driver", "C:\\Chrome\\chromedriver.exe");
+        System.setProperty("webdriver.gecko.driver", "C:\\Firefox\\geckodriver.exe");
+
         if (driver == null) {
             var seleniumServer = properties.getProperty("seleniumServer");
-
             if ("firefox".equals(browser)) {
-                if (seleniumServer != null)  {
-                    driver = new RemoteWebDriver(new URL(seleniumServer), new FirefoxOptions());
+                if (seleniumServer != null) {
+                    driver= new RemoteWebDriver(new URL(seleniumServer), new FirefoxOptions());
                 } else {
                     driver = new FirefoxDriver();
                 }
-                var service = new GeckoDriverService.Builder();
-                service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
-                service.build();
-                driver = new FirefoxDriver(service.build());
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
             } else if ("chrome".equals(browser)) {
-                if (seleniumServer != null)  {
-                    driver = new RemoteWebDriver(new URL(seleniumServer), new ChromeOptions());
+                if (seleniumServer != null) {
+                    driver= new RemoteWebDriver(new URL(seleniumServer), new ChromeOptions());
                 } else {
                     driver = new ChromeDriver();
                 }
-                var service = createDefaultService();
-                service.setExecutable("c:/windows/system32/chromedriver.exe");
-                driver = new ChromeDriver(service);
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-            } else {
-                throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
-            //var service = ChromeDriverService.createDefaultService();
-            //service.setExecutable("c:/windows/system32/chromedriver.exe");
-            //driver = new ChromeDriver(service);
-            Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-            driver.get(properties.getProperty("web.baseUrl"));
-            driver.manage().window().setSize(new Dimension(809, 1020));
-            session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
-
+        } else {
+            throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
         }
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
+        driver.get(properties.getProperty("web.baseUrl"));
+        driver.manage().window().setSize(new Dimension(550, 693));
+        session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
     }
 
     public LoginHelper session() {
