@@ -1,4 +1,4 @@
-/*package ru.stqa.mantis.tests;
+package ru.stqa.mantis.tests;
 
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.AfterEach;
@@ -31,7 +31,7 @@ public class UserCreationTests extends TestBase {
         user = app.developerMail().addUser();
 
 
-        app.user().startCreation(user.name(), email);
+        app.registration().initRegistration(user.name(), email);
 
         var message = app.developerMail().receive(user, Duration.ofSeconds(10));
         var url = CommonFunctions.extractUrl(message);
@@ -48,12 +48,12 @@ public class UserCreationTests extends TestBase {
         app.developerMail().deleteUser(user);
 
     }
-}*/
-//}
+
+//}*/
 
 
-//альтернативный помощник, который действует через удаленный программный интерфейс
-  /*@ParameterizedTest
+    //альтернативный помощник, который действует через удаленный программный интерфейс
+    @ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
         var email = String.format("%s@localhost", username);
@@ -76,8 +76,29 @@ public class UserCreationTests extends TestBase {
         Supplier<String> randomUser = () -> CommonFunctions.randomString(10);
         return Stream.generate(randomUser).limit(10);
     }
+}
 
-    @ParameterizedTest
+    //DeveloperMail
+   /* @Test
+   // void canCreateUserDeveloper() {
+        var password = "password";
+        var user = app.developerMail().addUser();
+        var email = String.format("%s@developermail.com", user.name());
+
+
+        //app.registration().initRegistration(username, email);
+
+        //var message = app.mail().receive(email, password, Duration.ofSeconds(10)).get(0).content();
+        //var url = CommonFunctions.extractUrl(message);
+
+        //app.mail().drain(email, password);
+        //app.registration().completeRegistration(url, username, password);
+
+        //app.http().login(username, password);
+        //Assertions.assertTrue(app.http().isLoggedIn());
+    }
+}/*
+    /*@ParameterizedTest
     @MethodSource("randomUserProvider")
     void canCreateUser(String username) {
         var email = String.format("%s@localhost", username);
@@ -95,5 +116,4 @@ public class UserCreationTests extends TestBase {
         app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());
     }
-}
 }*/

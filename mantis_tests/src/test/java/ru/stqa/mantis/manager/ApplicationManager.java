@@ -91,7 +91,7 @@ public class ApplicationManager {
         }
         return jamesCliHelper;
     }
-public JamesApiHelper jamesApiHelper() {
+public JamesApiHelper jamesApi() {
         if (jamesApiHelper == null) {
             jamesApiHelper = new JamesApiHelper(this);
         }
@@ -111,7 +111,11 @@ public JamesApiHelper jamesApiHelper() {
         }
         return userHelper;
     }*/
-
+    /*  public RestApiHelper rest() {
+       if (restApiHelper == null) {
+           restApiHelper = new RestApiHelper(this);
+       }
+       return restApiHelper;*/
     public DeveloperMailHelper developerMail(){
         if (developerMailHelper == null) {
             developerMailHelper = new DeveloperMailHelper(this);
