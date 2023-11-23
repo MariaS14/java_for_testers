@@ -28,6 +28,7 @@ public class ApplicationManager {
 
 
     private WebDriver driver;
+    private SoapApiHelper soapApiHelper;
 
 
     public void init(String browser, Properties properties) {
@@ -114,6 +115,13 @@ public class ApplicationManager {
             restApiHelper = new RestApiHelper(this);
         }
         return restApiHelper;
+    }
+
+    public SoapApiHelper soap() {
+        if (soapApiHelper == null) {
+            soapApiHelper = new SoapApiHelper(this);
+        }
+        return soapApiHelper;
     }
 
     public DeveloperMailHelper developerMail() {
