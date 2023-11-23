@@ -2,7 +2,7 @@
 
 MantisBT REST API
 - API version: 1.1.1
-  - Build date: 2023-11-23T00:01:28.571+03:00
+  - Build date: 2023-11-23T13:07:36.270+03:00
 
 For the sandbox to work, MantisBT must be hosted at the root folder of the host. For example: http://mantishost/ rather http://host/mantisbt.  If that is not the case, then create a host alias to map it as such or edit swagger.json to change basePath to include the mantisbt folder name.
 
@@ -109,7 +109,7 @@ public class ConfigApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost/api/rest*
+All URIs are relative to *http://localhost/mantisbt-2.26.0/api/rest*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

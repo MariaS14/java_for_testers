@@ -9,7 +9,7 @@ import io.swagger.client.model.Identifier;
 import io.swagger.client.model.Issue;
 import io.swagger.client.model.User;
 import ru.stqa.mantis.model.IssueData;
-import ru.stqa.mantis.model.UserData;
+//import ru.stqa.mantis.model.UserData;
 
 import io.swagger.client.api.UserApi;
 
@@ -28,10 +28,10 @@ public class RestApiHelper extends HelperBase {
         Issue issue = new Issue();
         issue.setSummary(issueData.summary());
         issue.setDescription(issueData.description());
-        var projectId= new Identifier();
+        var projectId = new Identifier();
         projectId.setId(issueData.project());
         issue.setProject(projectId);
-        var categorytId= new Identifier();
+        var categorytId = new Identifier();
         categorytId.setId(issueData.category());
         issue.setCategory(categorytId);
 
@@ -43,7 +43,9 @@ public class RestApiHelper extends HelperBase {
         }
     }
 
-    public void createUser(UserData userdata) {
+}
+
+  /*  public void createUser(UserData userdata) {
         User newUser = new User();
         newUser.username(userdata.username());
         newUser.password(userdata.password());
@@ -56,4 +58,4 @@ public class RestApiHelper extends HelperBase {
             throw new RuntimeException(e);
         }
     }
-}
+}*/

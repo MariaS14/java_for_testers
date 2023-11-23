@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Project
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-23T00:01:28.571+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-11-23T13:07:36.270+03:00")
 public class Project {
   @SerializedName("id")
   private Long id = null;

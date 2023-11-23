@@ -3,7 +3,7 @@ package ru.stqa.mantis.tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.stqa.mantis.common.CommonFunctions;
-import ru.stqa.mantis.model.UserData;
+//import ru.stqa.mantis.model.UserData;
 //import ru.stqa.mantis.model.UserData;
 
 
@@ -13,34 +13,25 @@ import java.util.regex.Pattern;
 public class UserRegistrationTests extends TestBase {
 
 
-    /*@Test
-    void canRegisterUser() {
-        //var url = "";
-        var username = String.format(CommonFunctions.randomString(6));
+    @Test
+    void canRegisterUserApi() throws InterruptedException {
+        var username = String.format(CommonFunctions.randomString(8));
         var email = String.format("%s@localhost", username);
+        var password = "password";
 
-        app.jamesCli().addUser(email, "password");
-        app.session().signup( username, email);
+        app.jamesApi().addUser(email, password);
+        app.session().signup(username, email);
 
-        var messages = app.mail().receive(email, "password", Duration.ofSeconds(10));
-        var text = messages.get(0).content();
-        var pattern = Pattern.compile("http://\\S*");
-        var matcher = pattern.matcher(text);
+        var sms = app.mail().receive(email, password, Duration.ofSeconds(60));
+        var text = sms.get(0).content();
+        var url = CommonFunctions.extractUrl(text);
 
-        var url = "";
-        if (matcher.find()) {
-            url = text.substring(matcher.start(), matcher.end());
-            System.out.println(url);
-        }
-        app.session().finishedRegistration(url, username, "password");
+        app.session().finishedRegistration(url, username, password);
 
-        Assertions.assertTrue(app.session().isLoggedIn());
-
-        app.http().login(username, "password");
+        app.http().login(username, password);
         Assertions.assertTrue(app.http().isLoggedIn());
-
     }
-}*/
+
     @Test
     void canRegisterUser() throws InterruptedException {
         var username = String.format(CommonFunctions.randomString(6));
@@ -67,28 +58,11 @@ public class UserRegistrationTests extends TestBase {
         Assertions.assertTrue(app.http().isLoggedIn());
 
     }
-
-
-
-    @Test
-    void canRegisterUserApi() throws InterruptedException {
-        var username = String.format(CommonFunctions.randomString(8));
-        var email = String.format("%s@localhost", username);
-        var password = "password";
-
-        app.jamesApi().addUser(email, password);
-        app.session().signup(username, email);
-
-        var sms = app.mail().receive(email, password, Duration.ofSeconds(60));
-        var text = sms.get(0).content();
-        var url = CommonFunctions.extractUrl(text);
-
-        app.session().finishedRegistration(url, username, password);
-
-        app.http().login(username, password);
-        Assertions.assertTrue(app.http().isLoggedIn());
-    }
 }
+
+
+
+
 
 
 

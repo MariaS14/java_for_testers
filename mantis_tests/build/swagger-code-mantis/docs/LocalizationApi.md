@@ -1,6 +1,6 @@
 # LocalizationApi
 
-All URIs are relative to *http://localhost/api/rest*
+All URIs are relative to *http://localhost/mantisbt-2.26.0/api/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

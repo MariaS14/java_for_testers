@@ -24,11 +24,10 @@ public class ApplicationManager {
     private JamesApiHelper jamesApiHelper;
     //private LoginHelper loginSession;
     private DeveloperMailHelper developerMailHelper;
-    //private RestApiHelper restApiHelper;
+    private RestApiHelper restApiHelper;
 
 
     private WebDriver driver;
-
 
 
     public void init(String browser, Properties properties) {
@@ -37,10 +36,8 @@ public class ApplicationManager {
     }
 
 
-
-
-    public WebDriver driver(){
-        if(driver==null){
+    public WebDriver driver() {
+        if (driver == null) {
             if ("firefox".equals(string)) {
                 var service = new GeckoDriverService.Builder();
                 service.usingDriverExecutable(new File("C:/windows/system32/geckodriver.exe"));
@@ -91,7 +88,8 @@ public class ApplicationManager {
         }
         return jamesCliHelper;
     }
-public JamesApiHelper jamesApi() {
+
+    public JamesApiHelper jamesApi() {
         if (jamesApiHelper == null) {
             jamesApiHelper = new JamesApiHelper(this);
         }
@@ -105,29 +103,33 @@ public JamesApiHelper jamesApi() {
         return mailHelper;
     }
 
-   /*public UserHelper user(){
-        if (userHelper == null) {
-            userHelper = new UserHelper(this);
+    /*public UserHelper user(){
+         if (userHelper == null) {
+             userHelper = new UserHelper(this);
+         }
+         return userHelper;
+     }*/
+    public RestApiHelper rest() {
+        if (restApiHelper == null) {
+            restApiHelper = new RestApiHelper(this);
         }
-        return userHelper;
-    }*/
-    /*  public RestApiHelper rest() {
-       if (restApiHelper == null) {
-           restApiHelper = new RestApiHelper(this);
-       }
-       return restApiHelper;*/
-    public DeveloperMailHelper developerMail(){
+        return restApiHelper;
+    }
+
+    public DeveloperMailHelper developerMail() {
         if (developerMailHelper == null) {
             developerMailHelper = new DeveloperMailHelper(this);
         }
         return developerMailHelper;
     }
-    public String property(String name){
+
+    public String property(String name) {
         return properties.getProperty(name);
     }
-
-
 }
+
+
+
 
 
 

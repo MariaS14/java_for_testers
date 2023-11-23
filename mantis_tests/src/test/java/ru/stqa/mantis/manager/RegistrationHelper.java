@@ -19,6 +19,7 @@ public class RegistrationHelper extends HelperBase{
             }
         }
 
+
         public void completeRegistration(String url, String username, String password) {
             manager.driver().navigate().to(url);
             type(By.name("realname"), username);
