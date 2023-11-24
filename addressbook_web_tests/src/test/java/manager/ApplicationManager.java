@@ -5,6 +5,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -16,7 +17,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.chrome.ChromeDriverService.createDefaultService;
 
@@ -36,32 +36,32 @@ public class ApplicationManager {
 
     public void init(String browser, Properties properties) throws MalformedURLException {
         this.properties = properties;
-        System.setProperty("webdriver.chrome.driver", "C:\\Chrome\\chromedriver.exe");
-        System.setProperty("webdriver.gecko.driver", "C:\\Firefox\\geckodriver.exe");
-
         if (driver == null) {
             var seleniumServer = properties.getProperty("seleniumServer");
-            if ("firefox".equals(browser)) {
+            if ("chrome".equals(browser)) {
                 if (seleniumServer != null) {
-                    driver= new RemoteWebDriver(new URL(seleniumServer), new FirefoxOptions());
+                    driver = new RemoteWebDriver(new URL(seleniumServer), new ChromeOptions());
                 } else {
-                    driver = new FirefoxDriver();
+                    var service = ChromeDriverService.createDefaultService();
+                    service.setExecutable("c:/windows/system32/chromedriver.exe");
+                    driver = new ChromeDriver(service);
                 }
-            } else if ("chrome".equals(browser)) {
+            } else if ("firefox".equals(browser)) {
                 if (seleniumServer != null) {
-                    driver= new RemoteWebDriver(new URL(seleniumServer), new ChromeOptions());
+                    driver = new RemoteWebDriver(new URL(seleniumServer), new FirefoxOptions());
                 } else {
-                    driver = new ChromeDriver();
+                    var service = GeckoDriverService.createDefaultService();
+                    service.setExecutable("c:/windows/system32/geckodriver.exe");
+                    driver = new FirefoxDriver(service);
                 }
+            } else {
+                throw new IllegalArgumentException(String.format("Unknown browser %f", browser));
             }
-        } else {
-            throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
+            Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
+            driver.get(properties.getProperty("web.baseUrl"));
+            driver.manage().window().setSize(new Dimension(1000, 1000));
+            session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
         }
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-        driver.get(properties.getProperty("web.baseUrl"));
-        driver.manage().window().setSize(new Dimension(550, 693));
-        session().login(properties.getProperty("web.username"), properties.getProperty("web.password"));
     }
 
     public LoginHelper session() {
